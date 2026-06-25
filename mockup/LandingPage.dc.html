@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#fff}
+    @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes floaty2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  </style>
+</helmet>
+<div ref="{{ setRoot }}" style="font-family:'Inter','IBM Plex Sans Thai',sans-serif;color:#0F172A;background:#fff">
+
+  <!-- NAVBAR -->
+  <nav style="position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(255,255,255,.82);border-bottom:1px solid #EEF0F4">
+    <div style="max-width:1200px;margin:0 auto;height:68px;padding:0 28px;display:flex;align-items:center;gap:14px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:9px;background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-cta,0 4px 12px rgba(99,102,241,.32))">
+          <span style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px">Q</span>
+        </div>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em">Qchat</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:30px;margin-left:40px">
+        <a href="#features" style="text-decoration:none;color:#475569;font-size:15px;font-weight:500">ฟีเจอร์</a>
+        <a href="#how" style="text-decoration:none;color:#475569;font-size:15px;font-weight:500">แพ็กเกจ</a>
+        <a href="#pricing" style="text-decoration:none;color:#475569;font-size:15px;font-weight:500">ราคา</a>
+        <a href="#footer" style="text-decoration:none;color:#475569;font-size:15px;font-weight:500">ติดต่อ</a>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+        <button style="cursor:pointer;font-family:inherit;font-weight:600;font-size:15px;padding:9px 14px;border-radius:var(--r-btn,8px);background:transparent;border:none;color:#334155">เข้าสู่ระบบ</button>
+        <button style="cursor:pointer;font-family:inherit;font-weight:600;font-size:15px;padding:10px 18px;border-radius:var(--r-btn,8px);background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));color:#fff;border:none;box-shadow:var(--shadow-cta,0 4px 12px rgba(99,102,241,.32))">เริ่มใช้ฟรี</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;background:var(--hero-bg,radial-gradient(1100px 520px at 78% -8%,rgba(139,92,246,.14),transparent 60%),radial-gradient(900px 480px at 8% 12%,rgba(99,102,241,.10),transparent 55%),#FBFBFE)">
+    <div style="max-width:1200px;margin:0 auto;padding:74px 28px 88px;display:grid;grid-template-columns:1.02fr 1.1fr;gap:56px;align-items:center">
+      <!-- left -->
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;background:var(--brand-soft,#EEF2FF);color:var(--brand,#5B5BD6);font-size:13px;font-weight:600;margin-bottom:24px">
+          <span style="width:7px;height:7px;border-radius:50%;background:#10B981"></span>แพลตฟอร์มแชต + คอมเมิร์ซ อันดับ 1 ของร้านค้าไทย
+        </div>
+        <h1 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:54px;line-height:1.1;letter-spacing:-.03em;margin-bottom:20px">รวมทุกแชท<br>ทุกออเดอร์<br><span style="background:var(--grad,linear-gradient(120deg,#6366F1,#8B5CF6));-webkit-background-clip:text;background-clip:text;color:transparent">ไว้ในที่เดียว</span></h1>
+        <p style="font-size:18px;line-height:1.65;color:#64748B;max-width:480px;margin-bottom:32px">จัดการแชตจาก Line, Facebook, Instagram, TikTok พร้อมระบบสต็อก ติดตามพัสดุ และรับชำระเงิน ครบจบในแดชบอร์ดเดียว ให้คุณตอบลูกค้าได้เร็วและขายได้มากขึ้น</p>
+        <div style="display:flex;gap:14px;margin-bottom:36px">
+          <button style="cursor:pointer;font-family:inherit;font-weight:700;font-size:16px;padding:14px 26px;border-radius:var(--r-btn,8px);background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));color:#fff;border:none;box-shadow:var(--shadow-cta,0 8px 22px rgba(99,102,241,.34))">ทดลองใช้ฟรี 14 วัน</button>
+          <button style="cursor:pointer;font-family:inherit;font-weight:600;font-size:16px;padding:14px 24px;border-radius:var(--r-btn,8px);background:#fff;color:#334155;border:1px solid #E2E8F0;display:inline-flex;align-items:center;gap:8px"><span style="color:var(--brand,#5B5BD6)">▶</span>ดูเดโม</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="display:flex">
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#A5B4FC,#818CF8);border:2px solid #fff"></div>
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FBCFE8,#F472B6);border:2px solid #fff;margin-left:-10px"></div>
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#6EE7B7,#34D399);border:2px solid #fff;margin-left:-10px"></div>
+            <div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FCD34D,#F59E0B);border:2px solid #fff;margin-left:-10px"></div>
+          </div>
+          <div style="font-size:14px;color:#64748B"><span style="font-weight:700;color:#0F172A">ร้านค้ากว่า 5,000+ ร้าน</span> ไว้วางใจ Qchat</div>
+        </div>
+      </div>
+
+      <!-- right: product mockup -->
+      <div style="position:relative">
+        <div style="border-radius:18px;background:#fff;box-shadow:0 30px 70px rgba(76,29,149,.18),0 8px 24px rgba(15,23,42,.08);border:1px solid #EEF0F4;overflow:hidden">
+          <!-- window bar -->
+          <div style="height:38px;background:#F8FAFC;border-bottom:1px solid #EEF0F4;display:flex;align-items:center;padding:0 14px;gap:7px">
+            <span style="width:11px;height:11px;border-radius:50%;background:#FF5F57"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#FEBC2E"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#28C840"></span>
+            <span style="margin-left:14px;font-size:12px;color:#94A3B8;font-family:'JetBrains Mono',monospace">app.qchat.co/inbox</span>
+          </div>
+          <!-- inbox -->
+          <div style="display:grid;grid-template-columns:54px 200px 1fr;height:392px">
+            <!-- icon rail -->
+            <div style="background:#1E1B4B;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:18px">
+              <div style="width:30px;height:30px;border-radius:var(--r-btn,8px);background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif">Q</div>
+              <div style="width:32px;height:32px;border-radius:var(--r-btn,8px);background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px">💬</div>
+              <div style="width:32px;height:32px;border-radius:var(--r-btn,8px);display:flex;align-items:center;justify-content:center;color:#A5B4FC;font-size:15px;opacity:.6">📦</div>
+              <div style="width:32px;height:32px;border-radius:var(--r-btn,8px);display:flex;align-items:center;justify-content:center;color:#A5B4FC;font-size:15px;opacity:.6">🏪</div>
+              <div style="width:32px;height:32px;border-radius:var(--r-btn,8px);display:flex;align-items:center;justify-content:center;color:#A5B4FC;font-size:15px;opacity:.6">📊</div>
+            </div>
+            <!-- convo list -->
+            <div style="background:#fff;border-right:1px solid #EEF0F4;padding:12px 0">
+              <div style="padding:0 14px 10px;font-weight:700;font-size:14px">กล่องข้อความ</div>
+              <div style="padding:9px 12px;background:var(--brand-soft,#EEF2FF);border-left:3px solid var(--brand,#5B5BD6);display:flex;gap:9px;align-items:center">
+                <div style="position:relative;width:30px;height:30px;flex-shrink:0"><div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#A5B4FC,#818CF8)"></div><div style="position:absolute;right:-2px;bottom:-2px;width:13px;height:13px;border-radius:50%;background:#06C755;border:1.5px solid #fff;color:#fff;font-size:7px;font-weight:800;display:flex;align-items:center;justify-content:center">L</div></div>
+                <div style="min-width:0;flex:1"><div style="font-size:12px;font-weight:600">คุณสมหญิง</div><div style="font-size:11px;color:#94A3B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">สนใจเสื้อตัวนี้ค่ะ มีไซส์ M ไหม</div></div>
+                <div style="width:16px;height:16px;border-radius:50%;background:var(--brand,#5B5BD6);color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">2</div>
+              </div>
+              <div style="padding:9px 12px;display:flex;gap:9px;align-items:center">
+                <div style="position:relative;width:30px;height:30px;flex-shrink:0"><div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#93C5FD,#3B82F6)"></div><div style="position:absolute;right:-2px;bottom:-2px;width:13px;height:13px;border-radius:50%;background:#1877F2;border:1.5px solid #fff;color:#fff;font-size:8px;font-weight:800;display:flex;align-items:center;justify-content:center">f</div></div>
+                <div style="min-width:0;flex:1"><div style="font-size:12px;font-weight:600">Nattapong K.</div><div style="font-size:11px;color:#94A3B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">ขอบคุณครับ ได้รับของแล้ว</div></div>
+              </div>
+              <div style="padding:9px 12px;display:flex;gap:9px;align-items:center">
+                <div style="position:relative;width:30px;height:30px;flex-shrink:0"><div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#FBCFE8,#F472B6)"></div><div style="position:absolute;right:-2px;bottom:-2px;width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,#F58529,#DD2A7B);border:1.5px solid #fff;color:#fff;font-size:7px;display:flex;align-items:center;justify-content:center">◎</div></div>
+                <div style="min-width:0;flex:1"><div style="font-size:12px;font-weight:600">mild_shopaholic</div><div style="font-size:11px;color:#94A3B8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">โอนแล้วนะคะ 🙏</div></div>
+              </div>
+            </div>
+            <!-- chat thread -->
+            <div style="background:#F8FAFC;display:flex;flex-direction:column">
+              <div style="background:#fff;border-bottom:1px solid #EEF0F4;padding:10px 14px;display:flex;align-items:center;gap:9px">
+                <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#A5B4FC,#818CF8)"></div>
+                <div><div style="font-size:13px;font-weight:600">คุณสมหญิง</div><div style="font-size:10px;color:#10B981;font-weight:600">● ออนไลน์ · Line</div></div>
+              </div>
+              <div style="flex:1;padding:14px;display:flex;flex-direction:column;gap:9px">
+                <div style="align-self:flex-start;max-width:75%;background:#fff;border:1px solid #EEF0F4;border-radius:12px 12px 12px 3px;padding:8px 11px;font-size:12px;color:#334155">สนใจเสื้อตัวนี้ค่ะ มีไซส์ M ไหม</div>
+                <div style="align-self:flex-end;max-width:75%;background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));color:#fff;border-radius:12px 12px 3px 12px;padding:8px 11px;font-size:12px">มีค่ะ พร้อมส่งเลยนะคะ 😊</div>
+              </div>
+              <div style="background:#fff;border-top:1px solid #EEF0F4;padding:9px 12px;display:flex;align-items:center;gap:8px">
+                <div style="flex:1;background:#F1F5F9;border-radius:var(--r-btn,8px);padding:7px 11px;font-size:11px;color:#94A3B8">พิมพ์ข้อความ...</div>
+                <div style="width:28px;height:28px;border-radius:var(--r-btn,8px);background:var(--brand,#5B5BD6);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px">➤</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- floating cards -->
+        <div style="position:absolute;top:-22px;right:-18px;background:#fff;border-radius:12px;box-shadow:0 14px 34px rgba(15,23,42,.14);padding:12px 14px;display:flex;align-items:center;gap:10px;animation:floaty 5s ease-in-out infinite">
+          <div style="width:34px;height:34px;border-radius:9px;background:#ECFDF5;display:flex;align-items:center;justify-content:center;font-size:16px">✓</div>
+          <div><div style="font-size:12px;font-weight:700;color:#059669">ชำระเงินสำเร็จ</div><div style="font-size:11px;color:#94A3B8;font-family:'JetBrains Mono',monospace">+ ฿1,290.00</div></div>
+        </div>
+        <div style="position:absolute;bottom:34px;left:-30px;background:#fff;border-radius:12px;box-shadow:0 14px 34px rgba(15,23,42,.14);padding:12px 14px;display:flex;align-items:center;gap:10px;animation:floaty2 6s ease-in-out infinite">
+          <div style="width:34px;height:34px;border-radius:9px;background:#FFFBEB;display:flex;align-items:center;justify-content:center;font-size:16px">📦</div>
+          <div><div style="font-size:12px;font-weight:700">ออเดอร์ใหม่ #1042</div><div style="font-size:11px;color:#94A3B8">กำลังจัดเตรียมพัสดุ</div></div>
+        </div>
+        <div style="position:absolute;bottom:-20px;right:46px;background:#fff;border-radius:12px;box-shadow:0 14px 34px rgba(15,23,42,.14);padding:11px 14px;display:flex;align-items:center;gap:9px;animation:floaty 7s ease-in-out infinite">
+          <div style="width:8px;height:8px;border-radius:50%;background:#10B981"></div>
+          <div style="font-size:12px;font-weight:600">ลูกค้า 3 คนกำลังพิมพ์...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM LOGOS BAR -->
+  <section style="background:#fff;border-top:1px solid #F1F5F9;border-bottom:1px solid #F1F5F9;padding:38px 28px">
+    <div style="max-width:1100px;margin:0 auto;text-align:center">
+      <div style="font-size:13px;font-weight:600;letter-spacing:.06em;color:#94A3B8;text-transform:uppercase;margin-bottom:24px">เชื่อมต่อได้ทุกแพลตฟอร์ม</div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:18px">
+        <sc-for list="{{ channels }}" as="ch" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:9px;padding:9px 18px;border-radius:10px;background:#F8FAFC;border:1px solid #EEF0F4">
+            <span style="width:26px;height:26px;border-radius:7px;background:{{ ch.bg }};color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center">{{ ch.mark }}</span>
+            <span style="font-size:15px;font-weight:600;color:#475569">{{ ch.name }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" style="max-width:1160px;margin:0 auto;padding:88px 28px 40px">
+    <div style="text-align:center;margin-bottom:52px">
+      <div style="display:inline-block;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--brand,#5B5BD6);text-transform:uppercase;margin-bottom:14px">ฟีเจอร์</div>
+      <h2 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.03em;margin-bottom:14px">ทุกอย่างที่ร้านค้าออนไลน์ต้องการ</h2>
+      <p style="font-size:17px;color:#64748B;max-width:520px;margin:0 auto;line-height:1.6">เครื่องมือครบชุดในที่เดียว ไม่ต้องสลับหลายแอป ไม่ตกหล่นทุกออเดอร์</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <sc-for list="{{ features }}" as="f" hint-placeholder-count="6">
+        <div style="background:#fff;border:1px solid #EEF0F4;border-radius:var(--r-card,14px);padding:28px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
+          <div style="width:50px;height:50px;border-radius:12px;background:{{ f.bg }};display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px">{{ f.icon }}</div>
+          <h3 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:700;font-size:19px;margin-bottom:9px;letter-spacing:-.01em">{{ f.title }}</h3>
+          <p style="font-size:15px;color:#64748B;line-height:1.6">{{ f.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="max-width:1100px;margin:0 auto;padding:72px 28px">
+    <div style="text-align:center;margin-bottom:56px">
+      <div style="display:inline-block;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--brand,#5B5BD6);text-transform:uppercase;margin-bottom:14px">เริ่มต้นง่ายใน 3 ขั้นตอน</div>
+      <h2 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.03em">เริ่มขายได้ภายในไม่กี่นาที</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div style="text-align:center;padding:0 16px">
+          <div style="width:64px;height:64px;border-radius:50%;background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:var(--shadow-cta,0 10px 24px rgba(99,102,241,.3))">{{ s.n }}</div>
+          <h3 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:700;font-size:20px;margin-bottom:10px">{{ s.title }}</h3>
+          <p style="font-size:15px;color:#64748B;line-height:1.6">{{ s.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" style="background:linear-gradient(180deg,#FBFBFE,#F5F4FE);padding:84px 28px">
+    <div style="max-width:1100px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:52px">
+        <div style="display:inline-block;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--brand,#5B5BD6);text-transform:uppercase;margin-bottom:14px">ราคา</div>
+        <h2 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.03em;margin-bottom:14px">แพ็กเกจที่เหมาะกับทุกขนาดธุรกิจ</h2>
+        <p style="font-size:17px;color:#64748B">เริ่มฟรี ไม่ต้องใช้บัตรเครดิต ยกเลิกได้ทุกเมื่อ</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+          <div style="background:{{ p.cardBg }};border:{{ p.border }};border-radius:var(--r-card,16px);padding:32px;box-shadow:{{ p.shadow }};position:relative;transform:{{ p.scale }}">
+            <sc-if value="{{ p.featured }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:18px;right:18px;background:#fff;color:var(--brand,#5B5BD6);font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px">⭐ แนะนำ</div>
+            </sc-if>
+            <div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:700;font-size:20px;color:{{ p.nameColor }};margin-bottom:6px">{{ p.name }}</div>
+            <div style="font-size:14px;color:{{ p.subColor }};margin-bottom:22px">{{ p.tagline }}</div>
+            <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:24px">
+              <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:42px;letter-spacing:-.03em;color:{{ p.priceColor }}">{{ p.price }}</span>
+              <span style="font-size:15px;color:{{ p.subColor }}">/ เดือน</span>
+            </div>
+            <button style="width:100%;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:var(--r-btn,8px);background:{{ p.btnBg }};color:{{ p.btnColor }};border:{{ p.btnBorder }};margin-bottom:26px;box-shadow:{{ p.btnShadow }}">{{ p.cta }}</button>
+            <div style="display:flex;flex-direction:column;gap:13px">
+              <sc-for list="{{ p.features }}" as="ft" hint-placeholder-count="5">
+                <div style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:{{ p.featColor }}">
+                  <span style="color:{{ p.checkColor }};font-weight:800;flex-shrink:0">✓</span><span>{{ ft }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="max-width:1100px;margin:0 auto;padding:84px 28px">
+    <div style="text-align:center;margin-bottom:52px">
+      <div style="display:inline-block;font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--brand,#5B5BD6);text-transform:uppercase;margin-bottom:14px">เสียงจากผู้ใช้จริง</div>
+      <h2 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:38px;letter-spacing:-.03em">ร้านค้าทั่วไทยเติบโตไปกับ Qchat</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #EEF0F4;border-radius:var(--r-card,14px);padding:28px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
+          <div style="color:#F59E0B;font-size:15px;margin-bottom:14px;letter-spacing:2px">★★★★★</div>
+          <p style="font-size:15px;line-height:1.7;color:#334155;margin-bottom:22px">"{{ t.quote }}"</p>
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:50%;background:{{ t.avatarBg }};display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:17px">{{ t.initial }}</div>
+            <div><div style="font-size:15px;font-weight:700">{{ t.name }}</div><div style="font-size:13px;color:#94A3B8">{{ t.shop }}</div></div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="padding:0 28px 84px">
+    <div style="max-width:1100px;margin:0 auto;border-radius:24px;background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));padding:66px 40px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow-feature,0 24px 60px rgba(99,102,241,.34))">
+      <div style="position:absolute;top:-60px;right:-40px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.08)"></div>
+      <div style="position:absolute;bottom:-80px;left:-30px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.06)"></div>
+      <h2 style="position:relative;font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:40px;color:#fff;letter-spacing:-.03em;margin-bottom:16px">พร้อมเริ่มต้นแล้วหรือยัง?</h2>
+      <p style="position:relative;font-size:18px;color:rgba(255,255,255,.9);margin-bottom:32px">เข้าร่วมกับร้านค้ากว่า 5,000 ร้านที่ขายดีขึ้นด้วย Qchat</p>
+      <button style="position:relative;cursor:pointer;font-family:inherit;font-weight:700;font-size:17px;padding:16px 38px;border-radius:10px;background:#fff;color:var(--brand,#5B5BD6);border:none;box-shadow:0 10px 24px rgba(0,0,0,.16)">เริ่มใช้ฟรีวันนี้</button>
+      <div style="position:relative;margin-top:18px;font-size:14px;color:rgba(255,255,255,.82)">ทดลองฟรี 14 วัน · ไม่ต้องใช้บัตรเครดิต</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer" style="background:#0F1024;color:#CBD5E1;padding:64px 28px 32px">
+    <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:40px">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <div style="width:32px;height:32px;border-radius:9px;background:var(--grad,linear-gradient(135deg,#6366F1,#8B5CF6));display:flex;align-items:center;justify-content:center"><span style="color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:17px">Q</span></div>
+          <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:19px;color:#fff">Qchat</span>
+        </div>
+        <p style="font-size:14px;line-height:1.7;color:#94A3B8;max-width:260px">แพลตฟอร์มแชต + คอมเมิร์ซครบวงจรสำหรับร้านค้าออนไลน์ไทย</p>
+        <div style="display:flex;gap:10px;margin-top:20px">
+          <div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:15px">f</div>
+          <div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:15px">◎</div>
+          <div style="width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700">L</div>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="4">
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:16px">{{ col.title }}</div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4">
+              <a href="#" style="text-decoration:none;font-size:14px;color:#94A3B8">{{ l }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="max-width:1160px;margin:48px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:13px;color:#64748B">
+      <span>© 2026 Qchat Co., Ltd. สงวนลิขสิทธิ์</span>
+      <span style="font-family:'JetBrains Mono',monospace">Made in Thailand 🇹🇭</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;brandTheme&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Indigo Violet&quot;, &quot;Emerald Mint&quot;, &quot;Sunset Coral&quot;, &quot;Ocean Blue&quot;], &quot;default&quot;: &quot;Indigo Violet&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;vibe&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Playful&quot;, &quot;Balanced&quot;, &quot;Corporate&quot;], &quot;default&quot;: &quot;Balanced&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;heroBackground&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Aurora&quot;, &quot;Spotlight&quot;, &quot;Clean&quot;], &quot;default&quot;: &quot;Aurora&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  themes = {
+    'Indigo Violet': { g1:'#6366F1', g2:'#8B5CF6', strong:'#5B5BD6', deep:'#7C3AED', soft:'#EEF2FF', softLine:'#C7D2FE', glow:'99,102,241' },
+    'Emerald Mint':  { g1:'#10B981', g2:'#0EA5A5', strong:'#0F9D70', deep:'#0F766E', soft:'#E7FBF2', softLine:'#A7F3D0', glow:'16,185,129' },
+    'Sunset Coral':  { g1:'#FB7185', g2:'#F97316', strong:'#F43F5E', deep:'#EA580C', soft:'#FFF1F2', softLine:'#FECDD3', glow:'244,63,94' },
+    'Ocean Blue':    { g1:'#38BDF8', g2:'#2563EB', strong:'#2563EB', deep:'#0E7490', soft:'#EFF6FF', softLine:'#BFDBFE', glow:'37,99,235' },
+  };
+  vibes = {
+    'Playful':   { rCard:'20px', rBtn:'13px', fill:'grad' },
+    'Balanced':  { rCard:'14px', rBtn:'8px',  fill:'grad' },
+    'Corporate': { rCard:'8px',  rBtn:'5px',  fill:'solid' },
+  };
+  setRoot = (el) => { this.rootEl = el; this.applyVars(); };
+  componentDidMount() { this.applyVars(); }
+  componentDidUpdate() { this.applyVars(); }
+  applyVars() {
+    const el = this.rootEl; if (!el) return;
+    const t = this.themes[this.props.brandTheme] || this.themes['Indigo Violet'];
+    const v = this.vibes[this.props.vibe] || this.vibes['Balanced'];
+    const hbName = this.props.heroBackground || 'Aurora';
+    const grad = v.fill === 'grad' ? `linear-gradient(135deg,${t.g1},${t.g2})` : t.strong;
+    const heroBgs = {
+      'Aurora':    `radial-gradient(1100px 520px at 78% -8%,rgba(${t.glow},.16),transparent 60%),radial-gradient(900px 480px at 8% 12%,rgba(${t.glow},.10),transparent 55%),#FBFBFE`,
+      'Spotlight': `radial-gradient(1000px 640px at 50% -24%,rgba(${t.glow},.20),transparent 62%),#FBFCFF`,
+      'Clean':     '#FBFCFF',
+    };
+    const set = (k, val) => el.style.setProperty(k, val);
+    set('--grad', grad);
+    set('--grad-strong', v.fill === 'grad' ? `linear-gradient(160deg,${t.strong},${t.deep})` : t.strong);
+    set('--brand', t.strong);
+    set('--brand-soft', t.soft);
+    set('--brand-soft-line', t.softLine);
+    set('--r-card', v.rCard);
+    set('--r-btn', v.rBtn);
+    set('--shadow-cta', v.fill === 'grad' ? `0 8px 22px rgba(${t.glow},.34)` : '0 1px 2px rgba(15,23,42,.18)');
+    set('--shadow-feature', v.fill === 'grad' ? `0 24px 52px rgba(${t.glow},.42)` : '0 10px 24px rgba(15,23,42,.14)');
+    set('--hero-bg', heroBgs[hbName] || heroBgs['Aurora']);
+  }
+  renderVals() {
+    return {
+      setRoot: this.setRoot,
+      channels: [
+        { name: 'Line OA', mark: 'L', bg: '#06C755' },
+        { name: 'Messenger', mark: 'f', bg: '#1877F2' },
+        { name: 'Instagram', mark: '◎', bg: 'linear-gradient(135deg,#F58529,#DD2A7B,#8134AF)' },
+        { name: 'TikTok', mark: '♪', bg: '#111827' },
+        { name: 'Shopee', mark: 'S', bg: '#EE4D2D' },
+        { name: 'Lazada', mark: 'L', bg: '#0F146D' },
+      ],
+      features: [
+        { icon: '💬', bg: '#EEF2FF', title: 'รวมแชทหลายช่องทาง', desc: 'ตอบลูกค้าจาก Line, Facebook, IG, TikTok ได้จากหน้าจอเดียว ไม่ต้องสลับแอป' },
+        { icon: '📦', bg: '#FFFBEB', title: 'ติดตามพัสดุอัตโนมัติ', desc: 'เช็คสถานะ EMS, Kerry, Flash, J&T แบบเรียลไทม์ พร้อมแจ้งลูกค้าอัตโนมัติ' },
+        { icon: '🏪', bg: '#ECFDF5', title: 'ระบบจัดการสต็อก POS', desc: 'จัดการสินค้า ออเดอร์ และสต็อกครบจบ ตัดสต็อกอัตโนมัติเมื่อมีการขาย' },
+        { icon: '💳', bg: '#EEF2FF', title: 'รับชำระเงินในแชท', desc: 'ส่งลิงก์ชำระเงินหรือ QR PromptPay ให้ลูกค้าจ่ายได้ทันทีในแชท' },
+        { icon: '👥', bg: '#FDF2F8', title: 'ทีมหลายคน', desc: 'แอดมินหลายคนช่วยกันตอบ มอบหมายงาน และจัดการสิทธิ์การเข้าถึงได้' },
+        { icon: '📊', bg: '#FEF2F2', title: 'รายงานยอดขาย', desc: 'สรุปยอดขาย วิเคราะห์พฤติกรรมลูกค้า และดูสินค้าขายดีแบบเรียลไทม์' },
+      ],
+      steps: [
+        { n: '1', title: 'เชื่อมต่อช่องทาง', desc: 'เชื่อม Line, Facebook, IG, TikTok และร้านค้าออนไลน์ของคุณภายในไม่กี่คลิก' },
+        { n: '2', title: 'จัดการในที่เดียว', desc: 'ตอบแชท จัดการออเดอร์ ตัดสต็อก และติดตามพัสดุจากแดชบอร์ดเดียว' },
+        { n: '3', title: 'เติบโตยอดขาย', desc: 'ตอบเร็วขึ้น ปิดการขายมากขึ้น พร้อมรายงานช่วยตัดสินใจ' },
+      ],
+      plans: [
+        {
+          name: 'เริ่มต้น', tagline: 'สำหรับร้านเปิดใหม่', price: '฿390',
+          featured: false, cardBg: '#fff', border: '1px solid #E2E8F0', shadow: '0 1px 3px rgba(15,23,42,.04)', scale: 'none',
+          nameColor: '#0F172A', subColor: '#94A3B8', priceColor: '#0F172A', featColor: '#475569', checkColor: '#10B981',
+          cta: 'เริ่มต้นใช้งาน', btnBg: '#fff', btnColor: 'var(--brand,#5B5BD6)', btnBorder: '1px solid var(--brand-soft-line,#C7D2FE)', btnShadow: 'none',
+          features: ['1 ช่องทางการแชท', '1 ผู้ใช้', 'ระบบจัดการสต็อกพื้นฐาน', 'ติดตามพัสดุ', 'รายงานยอดขายพื้นฐาน'],
+        },
+        {
+          name: 'ธุรกิจ', tagline: 'ยอดนิยมสำหรับร้านที่กำลังโต', price: '฿990',
+          featured: true, cardBg: 'var(--grad-strong,linear-gradient(160deg,#5B5BD6,#7C3AED))', border: 'none', shadow: 'var(--shadow-feature,0 24px 50px rgba(99,102,241,.4))', scale: 'scale(1.04)',
+          nameColor: '#fff', subColor: 'rgba(255,255,255,.78)', priceColor: '#fff', featColor: 'rgba(255,255,255,.94)', checkColor: 'rgba(255,255,255,.92)',
+          cta: 'ทดลองใช้ฟรี 14 วัน', btnBg: '#fff', btnColor: 'var(--brand,#5B5BD6)', btnBorder: 'none', btnShadow: '0 8px 20px rgba(0,0,0,.18)',
+          features: ['ทุกช่องทางการแชท', '5 ผู้ใช้', 'ระบบ POS + จัดการสต็อกครบ', 'ติดตามพัสดุทุกขนส่ง', 'รับชำระเงินในแชท', 'รายงานยอดขายขั้นสูง'],
+        },
+        {
+          name: 'องค์กร', tagline: 'สำหรับธุรกิจขนาดใหญ่', price: 'ติดต่อเรา',
+          featured: false, cardBg: '#fff', border: '1px solid #E2E8F0', shadow: '0 1px 3px rgba(15,23,42,.04)', scale: 'none',
+          nameColor: '#0F172A', subColor: '#94A3B8', priceColor: '#0F172A', featColor: '#475569', checkColor: '#10B981',
+          cta: 'ติดต่อฝ่ายขาย', btnBg: '#0F172A', btnColor: '#fff', btnBorder: 'none', btnShadow: 'none',
+          features: ['ทุกช่องทางการแชท', 'ผู้ใช้ไม่จำกัด', 'POS + จัดการสต็อกครบ', 'API สำหรับเชื่อมต่อระบบ', 'ผู้ดูแลบัญชีเฉพาะ', 'Support พิเศษ 24/7'],
+        },
+      ],
+      testimonials: [
+        { quote: 'ตั้งแต่ใช้ Qchat ตอบลูกค้าได้เร็วขึ้นมาก ไม่ตกหล่นออเดอร์เลย ยอดขายเพิ่มขึ้น 40% ภายใน 3 เดือน', initial: 'ป', name: 'คุณปนัดดา', shop: 'ร้าน Pang Closet · เสื้อผ้าแฟชั่น', avatarBg: 'linear-gradient(135deg,#A5B4FC,#818CF8)' },
+        { quote: 'ระบบติดตามพัสดุช่วยได้มาก ลูกค้าถามน้อยลง เพราะระบบแจ้งสถานะให้อัตโนมัติ ประหยัดเวลาทีมไปเยอะ', initial: 'ธ', name: 'คุณธนกร', shop: 'ร้าน TK Gadget · อุปกรณ์ไอที', avatarBg: 'linear-gradient(135deg,#6EE7B7,#34D399)' },
+        { quote: 'มีแอดมิน 4 คนช่วยกันตอบในที่เดียว แบ่งงานชัดเจน จัดการสิทธิ์ได้ ทำให้ร้านโตเร็วโดยไม่วุ่นวาย', initial: 'ม', name: 'คุณมนัสนันท์', shop: 'ร้าน Glow Beauty · เครื่องสำอาง', avatarBg: 'linear-gradient(135deg,#FBCFE8,#F472B6)' },
+      ],
+      footerCols: [
+        { title: 'ผลิตภัณฑ์', links: ['ฟีเจอร์', 'แพ็กเกจ', 'ราคา', 'อัปเดตใหม่'] },
+        { title: 'บริษัท', links: ['เกี่ยวกับเรา', 'ร่วมงานกับเรา', 'บล็อก', 'พาร์ทเนอร์'] },
+        { title: 'ช่วยเหลือ', links: ['ศูนย์ช่วยเหลือ', 'คู่มือการใช้งาน', 'ติดต่อเรา', 'สถานะระบบ'] },
+        { title: 'กฎหมาย', links: ['เงื่อนไขการใช้งาน', 'นโยบายความเป็นส่วนตัว', 'นโยบายคุกกี้'] },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

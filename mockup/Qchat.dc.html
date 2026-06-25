@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#F5F6FA}
+    a{text-decoration:none;color:inherit}
+  </style>
+</helmet>
+<div style="min-height:100vh;font-family:'Inter','IBM Plex Sans Thai',sans-serif;color:#0F172A;background:radial-gradient(900px 460px at 88% -6%,rgba(139,92,246,.10),transparent 60%),radial-gradient(700px 420px at 4% 4%,rgba(99,102,241,.08),transparent 55%),#F7F7FB;padding:56px 32px 72px">
+  <div style="max-width:1080px;margin:0 auto">
+
+    <!-- HEADER -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:8px">
+      <div style="width:48px;height:48px;border-radius:13px;background:linear-gradient(135deg,#6366F1,#8B5CF6);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:24px;box-shadow:0 8px 20px rgba(99,102,241,.35)">Q</div>
+      <div>
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.02em">Qchat</div>
+        <div style="font-size:13px;color:#64748B">แพลตฟอร์มแชต + คอมเมิร์ซครบวงจร · Design System & Screens</div>
+      </div>
+      <div style="margin-left:auto;font-size:12px;color:#94A3B8;font-family:'JetBrains Mono',monospace;background:#fff;border:1px solid #EAEEF4;padding:7px 13px;border-radius:999px">7 ไฟล์ · v1.0</div>
+    </div>
+    <h1 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-weight:800;font-size:34px;letter-spacing:-.03em;margin:26px 0 8px">ภาพรวมงานออกแบบทั้งหมด</h1>
+    <p style="font-size:15.5px;color:#64748B;max-width:560px;line-height:1.6;margin-bottom:38px">ระบบดีไซน์และหน้าจอหลักทั้งหมดของ Qchat คลิกที่การ์ดเพื่อเปิดดูแต่ละหน้า</p>
+
+    <!-- GRID -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <sc-for list="{{ screens }}" as="s" hint-placeholder-count="7">
+        <a href="{{ s.href }}" style="display:block">
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.05);height:100%;display:flex;flex-direction:column">
+            <div style="height:120px;background:{{ s.bandBg }};position:relative;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #EEF0F4">
+              <div style="width:54px;height:54px;border-radius:14px;background:{{ s.iconBg }};display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 6px 16px rgba(15,23,42,.1)">{{ s.icon }}</div>
+              <span style="position:absolute;top:12px;left:14px;font-size:10.5px;font-weight:700;color:{{ s.tagColor }};background:{{ s.tagBg }};padding:3px 9px;border-radius:999px;letter-spacing:.02em">{{ s.tag }}</span>
+              <sc-if value="{{ s.flag }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:12px;right:14px;font-size:10.5px;font-weight:700;color:#5B5BD6;background:#fff;padding:3px 9px;border-radius:999px">{{ s.flag }}</span>
+              </sc-if>
+            </div>
+            <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column">
+              <div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:16px;font-weight:700;margin-bottom:5px">{{ s.title }}</div>
+              <div style="font-size:13px;color:#64748B;line-height:1.55;flex:1">{{ s.desc }}</div>
+              <div style="font-size:13px;font-weight:700;color:#5B5BD6;margin-top:14px;display:flex;align-items:center;gap:5px">เปิดดู <span>→</span></div>
+            </div>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+
+    <div style="text-align:center;color:#CBD5E1;font-size:12.5px;font-family:'JetBrains Mono',monospace;margin-top:48px">Qchat · Indigo #5B5BD6 · Plus Jakarta Sans + Inter + IBM Plex Sans Thai · 🇹🇭</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      screens: [
+        { title: 'Landing Page', href: 'LandingPage.dc.html', icon: '🚀', tag: 'มาร์เก็ตติ้ง', flag: '✦ Tweakable',
+          desc: 'หน้าเว็บการตลาด — ฮีโร่ ฟีเจอร์ ราคา รีวิว พร้อมธีมปรับได้',
+          bandBg: 'linear-gradient(135deg,#EEF2FF,#F5F3FF)', iconBg: '#fff', tagColor: '#5B5BD6', tagBg: '#EEF2FF' },
+        { title: 'แชทรวมทุกช่องทาง', href: 'ChatInbox.dc.html', icon: '💬', tag: 'แอปหลัก', flag: '',
+          desc: 'กล่องข้อความรวม Line/FB/IG/TikTok พร้อมการ์ดออเดอร์และข้อมูลลูกค้า',
+          bandBg: 'linear-gradient(135deg,#F0F4FF,#FAFBFF)', iconBg: '#EEF2FF', tagColor: '#5B5BD6', tagBg: '#EEF2FF' },
+        { title: 'ติดตามพัสดุ', href: 'ParcelTracking.dc.html', icon: '🚚', tag: 'แอปหลัก', flag: '',
+          desc: 'ติดตามขนส่ง EMS/Kerry/Flash/J&T พร้อมไทม์ไลน์สถานะแบบเรียลไทม์',
+          bandBg: 'linear-gradient(135deg,#FFF8EC,#FFFDF7)', iconBg: '#FFFBEB', tagColor: '#D97706', tagBg: '#FFFBEB' },
+        { title: 'จัดการสินค้า & POS', href: 'InventoryPOS.dc.html', icon: '🏪', tag: 'แอปหลัก', flag: '',
+          desc: 'ตารางสินค้า ระดับสต็อกสีบ่งชี้ และแผง POS ขายหน้าร้านด่วน',
+          bandBg: 'linear-gradient(135deg,#ECFDF5,#F6FEFB)', iconBg: '#ECFDF5', tagColor: '#059669', tagBg: '#ECFDF5' },
+        { title: 'จัดการทีม & สิทธิ์', href: 'TeamManagement.dc.html', icon: '👥', tag: 'แอปหลัก', flag: '',
+          desc: 'รายชื่อสมาชิก บทบาท เมทริกซ์สิทธิ์ และโมดัลเชิญสมาชิกใหม่',
+          bandBg: 'linear-gradient(135deg,#FCEEFF,#FDF7FF)', iconBg: '#FCE7F3', tagColor: '#DB2777', tagBg: '#FCE7F3' },
+        { title: 'ชำระเงินสมัครแพ็กเกจ', href: 'Checkout.dc.html', icon: '💳', tag: 'การชำระเงิน', flag: '',
+          desc: 'หน้าชำระเงิน — สรุปคำสั่งซื้อ บัตร/พร้อมเพย์/โอน และสถานะสำเร็จ',
+          bandBg: 'linear-gradient(135deg,#EEF2FF,#F3F0FE)', iconBg: '#fff', tagColor: '#5B5BD6', tagBg: '#EEF2FF' },
+        { title: 'Design System', href: 'DesignSystem.dc.html', icon: '🎨', tag: 'รากฐาน', flag: '',
+          desc: 'โทนสี ตัวอักษร ปุ่ม แบดจ์ และคอมโพเนนต์หลักที่ใช้ทั่วทั้งระบบ',
+          bandBg: 'linear-gradient(135deg,#F1F5F9,#FAFBFD)', iconBg: '#F1F5F9', tagColor: '#475569', tagBg: '#F1F5F9' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

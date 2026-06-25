@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#F8FAFC;overflow:hidden}
+    ::-webkit-scrollbar{width:7px;height:7px}
+    ::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+    ::-webkit-scrollbar-track{background:transparent}
+    @keyframes slidein{from{transform:translateX(100%)}to{transform:translateX(0)}}
+  </style>
+</helmet>
+<div style="height:100vh;display:flex;font-family:'Inter','IBM Plex Sans Thai',sans-serif;color:#0F172A;background:#F8FAFC;overflow-x:auto;overflow-y:hidden">
+
+  <!-- ICON RAIL -->
+  <div style="width:68px;flex-shrink:0;background:#1A1830;display:flex;flex-direction:column;align-items:center;padding:16px 0;gap:6px">
+    <div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#6366F1,#8B5CF6);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:20px;margin-bottom:14px;box-shadow:0 6px 16px rgba(99,102,241,.4)">Q</div>
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+      <div style="width:46px;height:46px;border-radius:12px;background:{{ n.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer">
+        <span style="font-size:18px;filter:{{ n.filter }}">{{ n.icon }}</span>
+        <span style="font-size:8px;font-weight:600;color:{{ n.labelColor }}">{{ n.label }}</span>
+      </div>
+    </sc-for>
+    <div style="margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#A5B4FC;font-size:17px;cursor:pointer">⚙️</div>
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#A5B4FC,#818CF8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;border:2px solid rgba(255,255,255,.2);cursor:pointer">ป</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div style="flex:1;min-width:760px;display:flex;flex-direction:column;overflow:hidden">
+
+    <!-- HEADER -->
+    <div style="background:#fff;border-bottom:1px solid #E8ECF2;padding:20px 26px">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="flex:1">
+          <h1 style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:23px;font-weight:800;letter-spacing:-.01em">จัดการสินค้าและสต็อก</h1>
+          <div style="font-size:13.5px;color:#64748B;margin-top:2px">ดูแลสินค้า ราคา และระดับสต็อกทั้งหมดของร้าน</div>
+        </div>
+        <button style="cursor:pointer;font-family:inherit;font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:9px;background:#fff;color:#475569;border:1px solid #E2E8F0">⤓ นำเข้าจากไฟล์</button>
+        <button onClick="{{ openSlide }}" style="display:flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:9px;background:linear-gradient(135deg,#6366F1,#8B5CF6);color:#fff;border:none;box-shadow:0 4px 12px rgba(99,102,241,.3)">+ เพิ่มสินค้า</button>
+      </div>
+    </div>
+
+    <!-- SCROLL BODY -->
+    <div style="flex:1;overflow-y:auto;padding:20px 26px">
+
+      <!-- STAT CARDS -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px rgba(15,23,42,.04)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+              <div style="width:34px;height:34px;border-radius:10px;background:{{ s.iconBg }};display:flex;align-items:center;justify-content:center;font-size:16px">{{ s.icon }}</div>
+              <span style="font-size:12.5px;color:#64748B">{{ s.label }}</span>
+            </div>
+            <div style="font-size:26px;font-weight:800;color:{{ s.numColor }};font-family:'JetBrains Mono',monospace;letter-spacing:-.02em">{{ s.num }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- TOOLBAR -->
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:9px 13px;width:240px">
+          <span style="color:#94A3B8;font-size:14px">⌕</span><span style="color:#94A3B8;font-size:13px">ค้นหาสินค้า / SKU...</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#475569;background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:9px 13px;cursor:pointer">หมวดหมู่ <span style="color:#94A3B8">▾</span></div>
+        <div style="display:flex;gap:5px;background:#F1F5F9;border-radius:9px;padding:3px">
+          <sc-for list="{{ stockFilters }}" as="f" hint-placeholder-count="4">
+            <div style="font-size:12.5px;font-weight:600;color:{{ f.color }};background:{{ f.bg }};padding:6px 11px;border-radius:7px;cursor:pointer;box-shadow:{{ f.shadow }}">{{ f.label }}</div>
+          </sc-for>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          <div style="display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#475569;background:#fff;border:1px solid #E2E8F0;border-radius:10px;padding:9px 13px;cursor:pointer">↕ เรียงตาม <span style="color:#94A3B8">▾</span></div>
+          <div style="display:flex;background:#F1F5F9;border-radius:9px;padding:3px">
+            <div style="font-size:13px;padding:6px 11px;border-radius:7px;background:#fff;color:#5B5BD6;box-shadow:0 1px 2px rgba(15,23,42,.08);cursor:pointer">☰</div>
+            <div style="font-size:13px;padding:6px 11px;border-radius:7px;color:#94A3B8;cursor:pointer">▦</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT TABLE -->
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:14px;overflow:hidden;box-shadow:0 1px 3px rgba(15,23,42,.04)">
+        <div style="display:grid;grid-template-columns:2.6fr 1.2fr 1fr 1fr 1.3fr 1.1fr 0.5fr;gap:12px;padding:12px 18px;background:#FAFBFD;border-bottom:1px solid #EEF0F4;font-size:11px;font-weight:700;color:#94A3B8;letter-spacing:.03em;text-transform:uppercase">
+          <span>สินค้า</span><span>หมวดหมู่</span><span style="text-align:right">ราคาขาย</span><span style="text-align:right">ต้นทุน</span><span>คงเหลือ</span><span style="text-align:center">สถานะ</span><span></span>
+        </div>
+        <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
+          <div style="display:grid;grid-template-columns:2.6fr 1.2fr 1fr 1fr 1.3fr 1.1fr 0.5fr;gap:12px;padding:13px 18px;border-bottom:1px solid #F4F6F9;align-items:center">
+            <div style="display:flex;align-items:center;gap:12px;min-width:0">
+              <div style="width:44px;height:44px;border-radius:10px;flex-shrink:0;background:repeating-linear-gradient(135deg,#EEF1F6,#EEF1F6 6px,#E5E9F0 6px,#E5E9F0 12px);display:flex;align-items:center;justify-content:center;font-size:20px">{{ p.icon }}</div>
+              <div style="min-width:0"><div style="font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.name }}</div><div style="font-size:11.5px;color:#94A3B8;font-family:'JetBrains Mono',monospace">{{ p.sku }}</div></div>
+            </div>
+            <div><span style="font-size:11.5px;font-weight:600;color:{{ p.catColor }};background:{{ p.catBg }};padding:3px 10px;border-radius:7px;white-space:nowrap">{{ p.category }}</span></div>
+            <div style="text-align:right;font-size:13.5px;font-weight:700;font-family:'JetBrains Mono',monospace">{{ p.price }}</div>
+            <div style="text-align:right;font-size:13px;color:#64748B;font-family:'JetBrains Mono',monospace">{{ p.cost }}</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:7px">
+                <span style="width:8px;height:8px;border-radius:50%;background:{{ p.stockDot }};flex-shrink:0"></span>
+                <span style="font-size:14px;font-weight:700;color:{{ p.stockColor }};font-family:'JetBrains Mono',monospace">{{ p.stock }}</span>
+                <sc-if value="{{ p.stockTag }}" hint-placeholder-val="{{ false }}"><span style="font-size:10px;font-weight:700;color:{{ p.tagColor }};background:{{ p.tagBg }};padding:2px 7px;border-radius:999px">{{ p.stockTag }}</span></sc-if>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center">
+              <div onClick="{{ p.toggle }}" style="width:42px;height:24px;border-radius:999px;background:{{ p.switchBg }};position:relative;cursor:pointer;transition:background .15s"><div style="position:absolute;top:3px;left:{{ p.knobLeft }};width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .15s"></div></div>
+            </div>
+            <div style="text-align:center;font-size:17px;color:#CBD5E1;cursor:pointer">⋯</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK POS PANEL -->
+  <div style="width:320px;flex-shrink:0;background:#fff;border-left:1px solid #E8ECF2;display:flex;flex-direction:column">
+    <div style="padding:18px 20px;border-bottom:1px solid #F1F5F9;display:flex;align-items:center;gap:10px">
+      <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#EEF2FF,#F5F3FF);display:flex;align-items:center;justify-content:center;font-size:18px">🛒</div>
+      <div><div style="font-size:15px;font-weight:800;font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif">ขายหน้าร้าน</div><div style="font-size:11.5px;color:#94A3B8">POS · Quick Sale</div></div>
+    </div>
+    <div style="padding:14px 20px 12px">
+      <div style="display:flex;align-items:center;gap:9px;background:#F1F5F9;border-radius:10px;padding:10px 12px">
+        <span style="color:#94A3B8;font-size:14px">⌕</span><span style="color:#94A3B8;font-size:13px">เพิ่มสินค้าลงตะกร้า...</span>
+      </div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:0 20px">
+      <sc-for list="{{ cart }}" as="c" hint-placeholder-count="2">
+        <div style="display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #F4F6F9">
+          <div style="width:42px;height:42px;border-radius:9px;flex-shrink:0;background:repeating-linear-gradient(135deg,#EEF1F6,#EEF1F6 6px,#E5E9F0 6px,#E5E9F0 12px);display:flex;align-items:center;justify-content:center;font-size:18px">{{ c.icon }}</div>
+          <div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ c.name }}</div><div style="font-size:12px;color:#5B5BD6;font-weight:700;font-family:'JetBrains Mono',monospace">{{ c.price }}</div></div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div onClick="{{ c.dec }}" style="width:24px;height:24px;border-radius:7px;border:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#475569;cursor:pointer">−</div>
+            <span style="font-size:13px;font-weight:700;min-width:16px;text-align:center;font-family:'JetBrains Mono',monospace">{{ c.qty }}</span>
+            <div onClick="{{ c.inc }}" style="width:24px;height:24px;border-radius:7px;border:1px solid #E2E8F0;display:flex;align-items:center;justify-content:center;font-size:14px;color:#475569;cursor:pointer">+</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:14px 20px;border-top:1px solid #F1F5F9;background:#FAFBFD">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#64748B;margin-bottom:8px"><span>ยอดรวมย่อย</span><span style="font-family:'JetBrains Mono',monospace">{{ subtotal }}</span></div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#64748B;margin-bottom:8px"><span>ส่วนลด</span><span style="color:#DC2626;font-family:'JetBrains Mono',monospace">{{ discount }}</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;border-top:1px dashed #E2E8F0;margin-bottom:14px"><span style="font-size:14px;font-weight:800">รวมทั้งสิ้น</span><span style="font-size:20px;font-weight:800;color:#5B5BD6;font-family:'JetBrains Mono',monospace">{{ total }}</span></div>
+      <button style="width:100%;cursor:pointer;font-family:inherit;font-weight:700;font-size:14.5px;padding:13px;border-radius:10px;background:linear-gradient(135deg,#6366F1,#8B5CF6);color:#fff;border:none;box-shadow:0 4px 14px rgba(99,102,241,.32)">💾 บันทึกการขาย</button>
+    </div>
+  </div>
+
+  <!-- ADD/EDIT SLIDE-OVER -->
+  <sc-if value="{{ slideOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:100;display:flex;justify-content:flex-end">
+      <div onClick="{{ closeSlide }}" style="position:absolute;inset:0;background:rgba(15,16,36,.4);backdrop-filter:blur(3px)"></div>
+      <div style="position:relative;width:440px;max-width:100%;height:100%;background:#fff;box-shadow:-12px 0 40px rgba(15,23,42,.18);display:flex;flex-direction:column;animation:slidein .3s ease both">
+        <div style="padding:20px 24px;border-bottom:1px solid #F1F5F9;display:flex;align-items:flex-start;justify-content:space-between">
+          <div><div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:18px;font-weight:800">เพิ่มสินค้าใหม่</div><div style="font-size:12.5px;color:#64748B;margin-top:2px">กรอกรายละเอียดสินค้าเพื่อเพิ่มลงคลัง</div></div>
+          <div onClick="{{ closeSlide }}" style="font-size:18px;color:#94A3B8;cursor:pointer;padding:2px 6px">✕</div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+          <div>
+            <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:7px">รูปสินค้า</label>
+            <div style="height:120px;border-radius:12px;border:1.5px dashed #CBD5E1;background:#FAFBFD;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer"><span style="font-size:26px">📷</span><span style="font-size:12px;color:#94A3B8">ลากรูปมาวาง หรือคลิกเพื่ออัปโหลด</span></div>
+          </div>
+          <div>
+            <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ชื่อสินค้า</label>
+            <input value="เสื้อเชิ้ตโอเวอร์ไซส์ สีขาว" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A">
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">SKU</label><input value="SHIRT-WH-M" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+            <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">หมวดหมู่</label><div style="display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;cursor:pointer"><span>เสื้อผ้า</span><span style="color:#94A3B8">▾</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ราคาขาย (฿)</label><input value="590" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+            <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ต้นทุน (฿)</label><input value="280" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+          </div>
+          <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">จำนวนสต็อก</label><input value="42" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+          <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">คำอธิบาย</label><textarea style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:inherit;resize:none;height:64px">เสื้อเชิ้ตทรงโอเวอร์ไซส์ ผ้าคอตตอน 100% นุ่มใส่สบาย</textarea></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#F8FAFF;border:1px solid #EEF0F7;border-radius:10px">
+            <div><div style="font-size:13.5px;font-weight:600">สถานะการขาย</div><div style="font-size:11.5px;color:#94A3B8">เปิดให้ลูกค้าสั่งซื้อได้ทันที</div></div>
+            <div style="width:42px;height:24px;border-radius:999px;background:#5B5BD6;position:relative;cursor:pointer"><div style="position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div></div>
+          </div>
+        </div>
+        <div style="padding:16px 24px;border-top:1px solid #F1F5F9;display:flex;gap:10px">
+          <button onClick="{{ closeSlide }}" style="flex:1;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;padding:12px;border-radius:10px;background:#F1F5F9;color:#475569;border:none">ยกเลิก</button>
+          <button onClick="{{ closeSlide }}" style="flex:1.6;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:12px;border-radius:10px;background:linear-gradient(135deg,#6366F1,#8B5CF6);color:#fff;border:none;box-shadow:0 4px 12px rgba(99,102,241,.3)">บันทึกสินค้า</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    slideOpen: false,
+    active: { 'SHIRT-WH-M': true, 'BAG-CV-01': true, 'COSM-SR-30': false, 'HAT-BK-02': true, 'COSM-LIP-12': true, 'SHOE-SN-40': true },
+    qty: { shirt: 1, lip: 2 },
+  };
+
+  baht(n) { return '฿' + n.toLocaleString('en-US'); }
+
+  renderVals() {
+    const act = (icon, label, active) => ({
+      icon, label,
+      bg: active ? 'linear-gradient(135deg,#6366F1,#8B5CF6)' : 'transparent',
+      filter: active ? 'none' : 'grayscale(.4) opacity(.7)',
+      labelColor: active ? '#fff' : '#A5B4FC',
+    });
+    const sfilter = (label, on) => ({
+      label,
+      color: on ? '#5B5BD6' : '#64748B',
+      bg: on ? '#fff' : 'transparent',
+      shadow: on ? '0 1px 2px rgba(15,23,42,.08)' : 'none',
+    });
+    const cat = (name, c) => {
+      const map = {
+        เสื้อผ้า: { color: '#5B5BD6', bg: '#EEF2FF' },
+        กระเป๋า: { color: '#0891B2', bg: '#ECFEFF' },
+        เครื่องสำอาง: { color: '#DB2777', bg: '#FCE7F3' },
+        accessories: { color: '#D97706', bg: '#FFFBEB' },
+        รองเท้า: { color: '#059669', bg: '#ECFDF5' },
+      };
+      const m = map[c] || { color: '#475569', bg: '#F1F5F9' };
+      return { category: name, catColor: m.color, catBg: m.bg };
+    };
+    const stock = (n) => {
+      if (n === 0) return { stock: '0', stockColor: '#DC2626', stockDot: '#EF4444', stockTag: 'หมด', tagColor: '#DC2626', tagBg: '#FEF2F2' };
+      if (n <= 10) return { stock: String(n), stockColor: '#D97706', stockDot: '#F59E0B', stockTag: 'เหลือน้อย', tagColor: '#D97706', tagBg: '#FFFBEB' };
+      return { stock: String(n), stockColor: '#0F172A', stockDot: '#10B981', stockTag: '', tagColor: '', tagBg: '' };
+    };
+    const toggle = (sku) => {
+      const on = this.state.active[sku];
+      return {
+        toggle: () => this.setState(s => ({ active: { ...s.active, [sku]: !s.active[sku] } })),
+        switchBg: on ? '#5B5BD6' : '#CBD5E1',
+        knobLeft: on ? '21px' : '3px',
+      };
+    };
+    const prod = (icon, name, sku, catName, catKey, price, cost, n) => ({
+      icon, name, sku, ...cat(catName, catKey), price: this.baht(price), cost: this.baht(cost), ...stock(n), ...toggle(sku),
+    });
+
+    // cart
+    const setQ = (k, d) => this.setState(s => ({ qty: { ...s.qty, [k]: Math.max(1, s.qty[k] + d) } }));
+    const qShirt = this.state.qty.shirt, qLip = this.state.qty.lip;
+    const cart = [
+      { icon: '👕', name: 'เสื้อเชิ้ตโอเวอร์ไซส์ สีขาว', price: this.baht(590), qty: qShirt, inc: () => setQ('shirt', 1), dec: () => setQ('shirt', -1) },
+      { icon: '💄', name: 'ลิปสติกแมตต์ #12', price: this.baht(320), qty: qLip, inc: () => setQ('lip', 1), dec: () => setQ('lip', -1) },
+    ];
+    const subtotalN = 590 * qShirt + 320 * qLip;
+    const discountN = 100;
+
+    return {
+      nav: [ act('💬','แชท',false), act('🧾','ออเดอร์',false), act('🏪','สต็อก',true), act('🚚','พัสดุ',false), act('📊','รายงาน',false) ],
+      openSlide: () => this.setState({ slideOpen: true }),
+      closeSlide: () => this.setState({ slideOpen: false }),
+      slideOpen: this.state.slideOpen,
+      stats: [
+        { icon: '📦', iconBg: '#EEF2FF', label: 'สินค้าทั้งหมด', num: '248', numColor: '#0F172A' },
+        { icon: '💰', iconBg: '#ECFDF5', label: 'มูลค่าสต็อกรวม', num: '฿1.24M', numColor: '#0F172A' },
+        { icon: '⚠️', iconBg: '#FFFBEB', label: 'สินค้าใกล้หมด', num: '12', numColor: '#D97706' },
+        { icon: '🚫', iconBg: '#FEF2F2', label: 'สินค้าหมดสต็อก', num: '3', numColor: '#DC2626' },
+      ],
+      stockFilters: [ sfilter('ทั้งหมด', true), sfilter('มีสต็อก', false), sfilter('ใกล้หมด', false), sfilter('หมด', false) ],
+      products: [
+        prod('👕', 'เสื้อเชิ้ตโอเวอร์ไซส์ สีขาว', 'SHIRT-WH-M', 'เสื้อผ้า', 'เสื้อผ้า', 590, 280, 42),
+        prod('👜', 'กระเป๋าผ้าแคนวาส', 'BAG-CV-01', 'กระเป๋า', 'กระเป๋า', 890, 420, 8),
+        prod('🧴', 'เซรั่มบำรุงผิว 30ml', 'COSM-SR-30', 'เครื่องสำอาง', 'เครื่องสำอาง', 1290, 650, 0),
+        prod('🧢', 'หมวกบักเก็ต ลายทาง', 'HAT-BK-02', 'accessories', 'accessories', 350, 150, 124),
+        prod('💄', 'ลิปสติกแมตต์ #12', 'COSM-LIP-12', 'เครื่องสำอาง', 'เครื่องสำอาง', 320, 140, 5),
+        prod('👟', 'รองเท้าผ้าใบ สีครีม', 'SHOE-SN-40', 'รองเท้า', 'รองเท้า', 1490, 720, 31),
+      ],
+      cart,
+      subtotal: this.baht(subtotalN),
+      discount: '-' + this.baht(discountN),
+      total: this.baht(subtotalN - discountN),
+    };
+  }
+}
+</script>
+</body>
+</html>
