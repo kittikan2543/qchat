@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qchat · ชำระเงิน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
+<style>
+  :root{
+    --brand:#FF6700;--brand-deep:#E25600;--brand-soft:#FFF1E6;--brand-soft-line:#FFD9BF;
+    --grad:linear-gradient(135deg,#FF8A3D,#FF6700);
+    --grad-strong:linear-gradient(160deg,#FF6700,#E25600);
+    --shadow-cta:0 8px 22px rgba(255,103,0,.34);
+    --shadow-feature:0 24px 60px rgba(255,103,0,.30);
+    --r-card:14px;--r-btn:8px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  a{text-decoration:none;color:inherit}
+  body{background:#F5F6FA}
+  input{font-family:inherit}
+  input:focus{outline:none;border-color:#FF6700!important;box-shadow:0 0 0 3px rgba(255,103,0,.12)}
+  @keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes rise{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .msr{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;direction:ltr;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-flex;align-items:center;justify-content:center}
+  .msr.fill{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+</style>
+</head>
+<body>
+<div style="min-height:100vh;font-family:'Inter','IBM Plex Sans Thai',sans-serif;color:#0F172A;background:#F5F6FA">
+
+  <!-- HEADER -->
+  <div style="background:#fff;border-bottom:1px solid #E8ECF2">
+    <div style="max-width:1000px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:12px">
+      <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:9px">
+        <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#FF8A3D,#FF6700);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:17px">Q</div>
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px">Qchat</span>
+      </a>
+      <div style="width:1px;height:22px;background:#E2E8F0;margin:0 4px"></div>
+      <span style="font-size:15px;font-weight:600;color:#334155">ชำระเงินเพื่อสมัครแพ็กเกจ</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#059669;background:#ECFDF5;padding:7px 13px;border-radius:999px"><span class="msr">lock</span> ปลอดภัย เข้ารหัส SSL</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div style="max-width:1000px;margin:0 auto;padding:32px 24px 56px;display:grid;grid-template-columns:0.92fr 1.12fr;gap:28px;align-items:start">
+
+    <!-- LEFT: ORDER SUMMARY (sticky) -->
+    <div style="position:sticky;top:24px">
+      <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+        <div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:17px;font-weight:800;margin-bottom:18px">สรุปการสั่งซื้อ</div>
+
+        <!-- plan card -->
+        <div style="border:1.5px solid #FFD9BF;background:linear-gradient(135deg,#FFF6EF,#FBFAFF);border-radius:13px;padding:16px;margin-bottom:18px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#FF8A3D,#FF6700);display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff"><span class="msr">work</span></div>
+              <div><div style="font-size:15px;font-weight:800">แพ็กเกจ "ธุรกิจ"</div><div style="font-size:11.5px;color:#64748B">ยอดนิยม · เหมาะกับร้านที่กำลังโต</div></div>
+            </div>
+            <span style="font-size:10.5px;font-weight:700;color:#FF6700;background:#FFF1E6;padding:3px 9px;border-radius:999px">เปลี่ยน</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-size:11px;color:#475569;background:#fff;border:1px solid #E8ECF2;padding:3px 9px;border-radius:7px">✓ ทุกช่องทาง</span>
+            <span style="font-size:11px;color:#475569;background:#fff;border:1px solid #E8ECF2;padding:3px 9px;border-radius:7px">✓ 5 ผู้ใช้</span>
+            <span style="font-size:11px;color:#475569;background:#fff;border:1px solid #E8ECF2;padding:3px 9px;border-radius:7px">✓ POS + สต็อก</span>
+            <span style="font-size:11px;color:#475569;background:#fff;border:1px solid #E8ECF2;padding:3px 9px;border-radius:7px">✓ ติดตามพัสดุ</span>
+            <span style="font-size:11px;color:#475569;background:#fff;border:1px solid #E8ECF2;padding:3px 9px;border-radius:7px">✓ รับชำระเงินในแชท</span>
+          </div>
+        </div>
+
+        <!-- billing toggle -->
+        <div style="margin-bottom:16px">
+          <div style="font-size:12.5px;font-weight:600;color:#475569;margin-bottom:8px">รอบการเรียกเก็บเงิน</div>
+          <div style="display:flex;gap:6px;background:#F1F5F9;border-radius:11px;padding:4px">
+            <div style="flex:1;text-align:center;font-size:13px;font-weight:600;padding:9px;border-radius:8px;cursor:pointer;background:transparent;color:#64748B;box-shadow:none">รายเดือน</div>
+            <div style="flex:1;text-align:center;font-size:13px;font-weight:600;padding:9px;border-radius:8px;cursor:pointer;background:#fff;color:#FF6700;box-shadow:0 1px 3px rgba(15,23,42,.1);display:flex;align-items:center;justify-content:center;gap:6px">รายปี <span style="font-size:10px;font-weight:700;color:#059669;background:#D1FAE5;padding:1px 6px;border-radius:999px">ประหยัด 20%</span></div>
+          </div>
+        </div>
+
+        <!-- price breakdown -->
+        <div style="border-top:1px solid #F1F5F9;padding-top:14px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13.5px">
+            <span style="color:#64748B">ราคาแพ็กเกจ (รายปี)</span>
+            <span style="font-weight:500;color:#334155;font-family:'JetBrains Mono',monospace">฿11,880.00</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13.5px">
+            <span style="color:#059669">ส่วนลด 20% (รายปี)</span>
+            <span style="font-weight:600;color:#059669;font-family:'JetBrains Mono',monospace">-฿2,376.00</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13.5px">
+            <span style="color:#64748B">ยอดหลังหักส่วนลด</span>
+            <span style="font-weight:500;color:#334155;font-family:'JetBrains Mono',monospace">฿9,504.00</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:13.5px">
+            <span style="color:#64748B">VAT 7%</span>
+            <span style="font-weight:500;color:#334155;font-family:'JetBrains Mono',monospace">฿665.28</span>
+          </div>
+        </div>
+        <div style="border-top:1.5px solid #EAEEF4;margin-top:14px;padding-top:14px;display:flex;align-items:baseline;justify-content:space-between">
+          <span style="font-size:15px;font-weight:800">รวมทั้งสิ้น</span>
+          <span style="font-size:24px;font-weight:800;color:#FF6700;font-family:'JetBrains Mono',monospace;letter-spacing:-.02em">฿10,169.28</span>
+        </div>
+
+        <!-- promo -->
+        <div style="margin-top:16px">
+          <div style="font-size:12.5px;font-weight:600;color:#475569;margin-bottom:7px">มีโค้ดส่วนลด?</div>
+          <div style="display:flex;gap:8px">
+            <input placeholder="กรอกโค้ดส่วนลด" style="flex:1;font-size:13px;padding:10px 12px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A">
+            <button style="cursor:pointer;font-family:inherit;font-weight:600;font-size:13px;padding:10px 16px;border-radius:10px;background:#0F172A;color:#fff;border:none">ใช้โค้ด</button>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;display:flex;gap:8px;font-size:11.5px;color:#94A3B8;line-height:1.5">
+          <span class="msr">autorenew</span><span>ต่ออายุอัตโนมัติทุกรอบบิล ยกเลิกได้ทุกเมื่อจากหน้าตั้งค่า ไม่มีค่าธรรมเนียมแอบแฝง</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: PAYMENT FORM -->
+    <div style="background:#fff;border:1px solid #EAEEF4;border-radius:16px;padding:26px;box-shadow:0 2px 8px rgba(15,23,42,.04)">
+      <div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:17px;font-weight:800;margin-bottom:16px">วิธีการชำระเงิน</div>
+
+      <!-- payment method tabs -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px">
+        <div id="tab-card" data-method="card" style="border:1.5px solid #FF6700;background:#FFF6EF;border-radius:12px;padding:13px 12px;cursor:pointer;text-align:center;position:relative">
+          <div style="font-size:22px;margin-bottom:5px"><span class="msr">credit_card</span></div>
+          <div class="tab-label" style="font-size:12px;font-weight:600;color:#FF6700;line-height:1.3">บัตรเครดิต/เดบิต</div>
+          <div class="tab-check" style="position:absolute;top:8px;right:8px;width:16px;height:16px;border-radius:50%;background:#FF6700;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:800"><span class="msr">check</span></div>
+        </div>
+        <div id="tab-promptpay" data-method="promptpay" style="border:1.5px solid #E2E8F0;background:#fff;border-radius:12px;padding:13px 12px;cursor:pointer;text-align:center;position:relative">
+          <div style="font-size:22px;margin-bottom:5px"><span class="msr">qr_code_2</span></div>
+          <div class="tab-label" style="font-size:12px;font-weight:600;color:#475569;line-height:1.3">พร้อมเพย์ / QR</div>
+        </div>
+        <div id="tab-bank" data-method="bank" style="border:1.5px solid #E2E8F0;background:#fff;border-radius:12px;padding:13px 12px;cursor:pointer;text-align:center;position:relative">
+          <div style="font-size:22px;margin-bottom:5px"><span class="msr">account_balance</span></div>
+          <div class="tab-label" style="font-size:12px;font-weight:600;color:#475569;line-height:1.3">โอนผ่านธนาคาร</div>
+        </div>
+      </div>
+
+      <!-- CARD FORM -->
+      <div id="cardPanel" style="display:flex;flex-direction:column;gap:15px">
+        <div>
+          <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">หมายเลขบัตร</label>
+          <div style="position:relative">
+            <input value="4242 4242 4242 4242" style="width:100%;font-size:14px;padding:11px 70px 11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A;font-family:'JetBrains Mono',monospace;letter-spacing:.04em">
+            <div style="position:absolute;right:12px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:5px">
+              <span style="font-size:10px;font-weight:800;color:#1A1F71;background:#FFF4EA;padding:3px 7px;border-radius:5px;letter-spacing:.02em">VISA</span>
+              <span style="font-size:10px;font-weight:600;color:#10B981"><span class="msr">check</span></span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ชื่อบนบัตร</label>
+          <input value="SOMYING JAIDEE" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A;text-transform:uppercase">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">วันหมดอายุ</label>
+            <input value="08 / 27" placeholder="MM / YY" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A;font-family:'JetBrains Mono',monospace">
+          </div>
+          <div>
+            <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">CVV</label>
+            <input value="•••" placeholder="123" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A;font-family:'JetBrains Mono',monospace">
+          </div>
+        </div>
+      </div>
+
+      <!-- PROMPTPAY -->
+      <div id="promptpayPanel" style="display:none;flex-direction:column;align-items:center;gap:12px;padding:6px 0 4px">
+        <div style="font-size:13px;color:#64748B;text-align:center">สแกน QR ด้วยแอปธนาคารเพื่อชำระผ่าน PromptPay</div>
+        <div style="width:188px;height:188px;border-radius:14px;border:1px solid #E2E8F0;background:repeating-linear-gradient(45deg,#0F172A,#0F172A 6px,#fff 6px,#fff 12px);position:relative;display:flex;align-items:center;justify-content:center">
+          <div style="width:54px;height:54px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#003D7A;border:2px solid #003D7A">PP</div>
+        </div>
+        <div style="font-size:12px;color:#94A3B8;font-family:'JetBrains Mono',monospace">หมดอายุใน 14:58 น.</div>
+      </div>
+
+      <!-- BANK TRANSFER -->
+      <div id="bankPanel" style="display:none;background:#F8FAFF;border:1px solid #EEF0F7;border-radius:12px;padding:16px;flex-direction:column;gap:11px">
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:12.5px;color:#64748B">ธนาคาร</span><span style="font-size:13.5px;font-weight:700">กสิกรไทย (KBank)</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:12.5px;color:#64748B">เลขที่บัญชี</span><span style="font-size:13.5px;font-weight:700;font-family:'JetBrains Mono',monospace;display:inline-flex;align-items:center;gap:5px">123-4-56789-0 <span class="msr">content_copy</span></span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:12.5px;color:#64748B">ชื่อบัญชี</span><span style="font-size:13.5px;font-weight:700">บจก. คิวแชท</span></div>
+        <div style="font-size:11.5px;color:#94A3B8;border-top:1px dashed #E2E8F0;padding-top:10px">โอนแล้วแนบสลิปเพื่อยืนยันการชำระเงินอัตโนมัติภายใน 5 นาที</div>
+      </div>
+
+      <!-- BILLING INFO -->
+      <div style="border-top:1px solid #F1F5F9;margin-top:22px;padding-top:20px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:14px">ข้อมูลผู้ชำระเงิน</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div>
+              <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ชื่อ-นามสกุล</label>
+              <input value="สมหญิง ใจดี" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A">
+            </div>
+            <div>
+              <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ชื่อร้าน</label>
+              <input value="Pang Closet" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A">
+            </div>
+          </div>
+          <div>
+            <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">อีเมลสำหรับใบเสร็จ</label>
+            <input value="shop@pangcloset.com" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;background:#fff;color:#0F172A">
+          </div>
+          <label style="display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:#475569">
+            <span style="width:18px;height:18px;border-radius:5px;border:1.5px solid #CBD5E1;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0"></span>
+            ต้องการออกใบกำกับภาษีเต็มรูปแบบ
+          </label>
+        </div>
+      </div>
+
+      <!-- CONFIRM -->
+      <button id="confirmBtn" style="width:100%;margin-top:22px;cursor:pointer;font-family:inherit;font-weight:700;font-size:16px;padding:15px;border-radius:11px;background:linear-gradient(135deg,#FF8A3D,#FF6700);color:#fff;border:none;box-shadow:0 8px 22px rgba(255,103,0,.34);display:flex;align-items:center;justify-content:center;gap:8px"><span class="msr">lock</span> ยืนยันการชำระเงิน ฿10,169.28</button>
+
+      <!-- trust row -->
+      <div style="margin-top:16px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+        <span style="font-size:11px;font-weight:800;color:#1A1F71;background:#FFF4EA;padding:4px 9px;border-radius:6px">VISA</span>
+        <span style="font-size:11px;font-weight:800;color:#EB001B;background:#FFF1F0;padding:4px 9px;border-radius:6px">Mastercard</span>
+        <span style="font-size:11px;font-weight:800;color:#003D7A;background:#EAF1FB;padding:4px 9px;border-radius:6px">PromptPay</span>
+        <span style="font-size:11.5px;color:#94A3B8;display:flex;align-items:center;gap:5px"><span class="msr">lock</span> ปลอดภัย 100%</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<a href="index.html" style="position:fixed;left:20px;bottom:20px;z-index:1000;display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:999px;background:#fff;color:#FF6700;font-weight:700;font-size:14px;font-family:'Inter','IBM Plex Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(15,23,42,.16);border:1px solid #FFD9BF">← ภาพรวม</a>
+
+<!-- SUCCESS OVERLAY -->
+<div id="successOverlay" style="display:none;position:fixed;inset:0;z-index:100;background:rgba(15,16,36,.55);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px">
+  <div id="successBackdrop" style="position:absolute;inset:0"></div>
+  <div style="position:relative;background:#fff;border-radius:22px;padding:44px 40px;max-width:420px;width:100%;text-align:center;box-shadow:0 30px 70px rgba(15,23,42,.3);animation:rise .4s ease both">
+    <div style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#10B981,#059669);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;box-shadow:0 12px 28px rgba(16,185,129,.4);animation:pop .5s ease both">
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><path d="M12 23l7 7 14-15" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40" style="animation:draw .5s .35s ease forwards"/></svg>
+    </div>
+    <div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px">ชำระเงินสำเร็จ! 🎉</div>
+    <div style="font-size:14.5px;color:#64748B;line-height:1.6;margin-bottom:8px">แพ็กเกจ <b style="color:#0F172A">"ธุรกิจ"</b> เริ่มใช้งานได้ทันที<br>ใบเสร็จถูกส่งไปที่ <b style="color:#0F172A">shop@pangcloset.com</b> แล้ว</div>
+    <div style="background:#F8FAFF;border:1px solid #EEF0F7;border-radius:12px;padding:13px 16px;margin:18px 0;display:flex;align-items:center;justify-content:space-between">
+      <span style="font-size:13px;color:#64748B">ยอดชำระ</span>
+      <span style="font-size:17px;font-weight:800;color:#FF6700;font-family:'JetBrains Mono',monospace">฿10,169.28</span>
+    </div>
+    <a href="index.html" style="display:flex;width:100%;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;padding:14px;border-radius:11px;background:linear-gradient(135deg,#FF8A3D,#FF6700);color:#fff;border:none;box-shadow:0 8px 20px rgba(255,103,0,.32);align-items:center;justify-content:center;text-decoration:none">เข้าสู่แดชบอร์ด →</a>
+    <div id="closeSuccess" style="margin-top:12px;font-size:13px;color:#94A3B8;cursor:pointer">ปิดหน้าต่าง</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TABS = {
+    card:      { tab: 'tab-card',      panel: 'cardPanel',      display: 'flex' },
+    promptpay: { tab: 'tab-promptpay', panel: 'promptpayPanel', display: 'flex' },
+    bank:      { tab: 'tab-bank',      panel: 'bankPanel',      display: 'flex' }
+  };
+
+  function selectMethod(method){
+    if(!TABS[method]) method = 'card';
+    Object.keys(TABS).forEach(function(key){
+      var cfg = TABS[key];
+      var tab = document.getElementById(cfg.tab);
+      var panel = document.getElementById(cfg.panel);
+      var on = (key === method);
+      // panel visibility
+      panel.style.display = on ? cfg.display : 'none';
+      // tab selected styling
+      tab.style.borderColor = on ? '#FF6700' : '#E2E8F0';
+      tab.style.background = on ? '#FFF6EF' : '#fff';
+      var label = tab.querySelector('.tab-label');
+      if(label) label.style.color = on ? '#FF6700' : '#475569';
+      // check badge: move it to the selected tab
+      var existing = tab.querySelector('.tab-check');
+      if(on && !existing){
+        var badge = document.createElement('div');
+        badge.className = 'tab-check';
+        badge.style.cssText = 'position:absolute;top:8px;right:8px;width:16px;height:16px;border-radius:50%;background:#FF6700;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:800';
+        badge.innerHTML = '<span class="msr">check</span>';
+        tab.appendChild(badge);
+      } else if(!on && existing){
+        existing.remove();
+      }
+    });
+  }
+
+  function openSuccess(){ document.getElementById('successOverlay').style.display = 'flex'; }
+  function closeSuccess(){ document.getElementById('successOverlay').style.display = 'none'; }
+
+  // wire up tabs
+  Object.keys(TABS).forEach(function(key){
+    document.getElementById(TABS[key].tab).addEventListener('click', function(){ selectMethod(key); });
+  });
+
+  // confirm -> open success
+  document.getElementById('confirmBtn').addEventListener('click', openSuccess);
+  // close handlers
+  document.getElementById('closeSuccess').addEventListener('click', closeSuccess);
+  document.getElementById('successBackdrop').addEventListener('click', closeSuccess);
+
+  // hash deep-linking on load
+  var hash = (location.hash || '').replace('#', '');
+  if(hash === 'success'){
+    selectMethod('card');
+    openSuccess();
+  } else if(hash === 'card' || hash === 'promptpay' || hash === 'bank'){
+    selectMethod(hash);
+  } else {
+    selectMethod('card');
+  }
+})();
+</script>
+</body>
+</html>

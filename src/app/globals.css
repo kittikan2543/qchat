@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/*
+ * Qchat design tokens — Pumpkin Spice (#FF6700) brand, shadcn/ui-compatible.
+ * Tailwind v4: tokens live in :root and are exposed to utilities via @theme inline.
+ */
+:root {
+  --radius: 0.875rem;
+
+  --background: #fffbf7;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  /* Brand — Pumpkin Spice */
+  --primary: #ff6700;
+  --primary-foreground: #ffffff;
+
+  --secondary: #fff1e6;
+  --secondary-foreground: #e25600;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #fff1e6;
+  --accent-foreground: #e25600;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  --border: #eaeef4;
+  --input: #e2e8f0;
+  --ring: #ff6700;
+
+  /* Palette accents */
+  --sky: #48acf0;
+  --amethyst: #a67db8;
+  --navy: #1d3461;
+  --dust: #d3d0cb;
+
+  --brand-gradient: linear-gradient(135deg, #ff8a3d, #ff6700);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sky: var(--sky);
+  --color-amethyst: var(--amethyst);
+  --color-navy: var(--navy);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-display: var(--font-jakarta), var(--font-thai), sans-serif;
+  --font-sans: var(--font-inter), var(--font-thai), sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), var(--font-thai), sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}

@@ -3,3 +3,19 @@ dist
 .vite
 *.local
 .DS_Store
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env
+.env
+.env*.local
+
+# misc
+/coverage
+.turbo
+.vercel
+/prisma/generated

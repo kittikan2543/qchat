@@ -1,0 +1,294 @@
+// Qchat — unified chat + commerce platform
+// PostgreSQL (Neon) + Prisma. Multi-tenant by Shop (one merchant store).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ─── Tenancy & people ────────────────────────────────────────────────
+
+model Shop {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  members       Membership[]
+  channels      Channel[]
+  products      Product[]
+  customers     Customer[]
+  conversations Conversation[]
+  orders        Order[]
+}
+
+// A user is mirrored from Clerk (clerkId = Clerk user id).
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  avatarUrl String?
+  createdAt DateTime @default(now())
+
+  memberships Membership[]
+  assignedConversations Conversation[] @relation("AssignedAgent")
+  sentMessages          Message[]      @relation("AgentSender")
+}
+
+enum Role {
+  OWNER // เจ้าของ
+  ADMIN // แอดมิน
+  STAFF // พนักงาน
+}
+
+model Membership {
+  id     String @id @default(cuid())
+  role   Role   @default(STAFF)
+  shop   Shop   @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+
+  @@unique([shopId, userId])
+  @@index([shopId])
+}
+
+// ─── Omnichannel ─────────────────────────────────────────────────────
+
+enum Platform {
+  LINE
+  FACEBOOK
+  INSTAGRAM
+  TIKTOK
+}
+
+model Channel {
+  id           String   @id @default(cuid())
+  shop         Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId       String
+  platform     Platform
+  externalId   String // e.g. LINE channel/bot id, FB page id
+  displayName  String?
+  accessToken  String? // encrypted at rest in production
+  secret       String?
+  active        Boolean @default(true)
+  createdAt    DateTime @default(now())
+
+  conversations Conversation[]
+
+  @@unique([platform, externalId])
+  @@index([shopId])
+}
+
+model Customer {
+  id           String   @id @default(cuid())
+  shop         Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId       String
+  platform     Platform
+  externalId   String // platform user id (e.g. LINE userId)
+  displayName  String?
+  avatarUrl    String?
+  phone        String?
+  note         String?
+  createdAt    DateTime @default(now())
+
+  conversations Conversation[]
+
+  @@unique([platform, externalId])
+  @@index([shopId])
+}
+
+enum ConversationStatus {
+  OPEN
+  PENDING
+  CLOSED
+}
+
+model Conversation {
+  id         String             @id @default(cuid())
+  shop       Shop               @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId     String
+  channel    Channel            @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  channelId  String
+  customer   Customer           @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  customerId String
+  status     ConversationStatus @default(OPEN)
+  unreadCount Int               @default(0)
+  lastMessageAt DateTime?
+  assignedTo  User?             @relation("AssignedAgent", fields: [assignedToId], references: [id])
+  assignedToId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages Message[]
+  orders   Order[]
+
+  @@index([shopId, status])
+  @@index([channelId])
+}
+
+enum MessageDirection {
+  INBOUND // from customer
+  OUTBOUND // from shop
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  STICKER
+  FILE
+  ORDER
+  SYSTEM
+}
+
+model Message {
+  id             String           @id @default(cuid())
+  conversation   Conversation     @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  conversationId String
+  direction      MessageDirection
+  type           MessageType      @default(TEXT)
+  text           String?
+  mediaUrl       String?
+  externalId     String? // platform message id (idempotency)
+  agentSender    User?            @relation("AgentSender", fields: [agentSenderId], references: [id])
+  agentSenderId  String?
+  createdAt      DateTime         @default(now())
+
+  @@unique([externalId])
+  @@index([conversationId, createdAt])
+}
+
+// ─── Catalog & inventory ─────────────────────────────────────────────
+
+model Product {
+  id          String   @id @default(cuid())
+  shop        Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  sku         String
+  name        String
+  category    String?
+  price       Int // satang? store THB as integer baht; use Decimal if subunit needed
+  cost        Int      @default(0)
+  stock       Int      @default(0)
+  imageUrl    String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  orderItems OrderItem[]
+
+  @@unique([shopId, sku])
+  @@index([shopId])
+}
+
+// ─── Orders, shipping, payments ──────────────────────────────────────
+
+enum OrderStatus {
+  DRAFT
+  PENDING_PAYMENT
+  PAID
+  PACKING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model Order {
+  id             String       @id @default(cuid())
+  shop           Shop         @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId         String
+  code           String // human-friendly e.g. #1042
+  status         OrderStatus  @default(DRAFT)
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
+  conversationId String?
+  subtotal       Int          @default(0)
+  discount       Int          @default(0)
+  total          Int          @default(0)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  items    OrderItem[]
+  shipment Shipment?
+  payment  Payment?
+
+  @@unique([shopId, code])
+  @@index([shopId, status])
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  name      String // snapshot
+  price     Int // snapshot
+  qty       Int     @default(1)
+
+  @@index([orderId])
+}
+
+enum Carrier {
+  THAILAND_POST
+  KERRY
+  FLASH
+  JT
+}
+
+enum ShipmentStatus {
+  PENDING
+  PICKED_UP
+  IN_TRANSIT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  PROBLEM
+}
+
+model Shipment {
+  id           String         @id @default(cuid())
+  order        Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId      String         @unique
+  carrier      Carrier
+  trackingNo   String
+  status       ShipmentStatus @default(PENDING)
+  lastSyncedAt DateTime?
+  createdAt    DateTime       @default(now())
+
+  @@index([trackingNo])
+}
+
+enum PaymentMethod {
+  PROMPTPAY
+  CARD
+  BANK_TRANSFER
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+model Payment {
+  id        String        @id @default(cuid())
+  order     Order         @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String        @unique
+  method    PaymentMethod
+  status    PaymentStatus @default(PENDING)
+  amount    Int
+  slipUrl   String? // uploaded transfer slip (Vercel Blob)
+  ref       String? // gateway/charge id or slip ref
+  paidAt    DateTime?
+  createdAt DateTime      @default(now())
+}

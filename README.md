@@ -1,49 +1,66 @@
 # Qchat — แพลตฟอร์มแชต + คอมเมิร์ซครบวงจร
 
-เว็บไซต์ดีไซน์ของ Qchat ทำเป็น **ไฟล์ HTML ล้วน** ที่ลิงก์ถึงกันทุกหน้า เปิดใช้งานได้จริง
-ไม่ต้อง build ไม่ต้องลงอะไร — ดับเบิลคลิก `index.html` ได้เลย
+แอปจริง (Next.js) ของ Qchat — รวมแชต Line/FB/IG/TikTok + ระบบสต็อก/POS, ติดตามพัสดุ, และรับชำระเงิน ในที่เดียว
+สำหรับร้านค้าออนไลน์ไทย 🇹🇭
 
-## วิธีเปิด
-- เปิด [index.html](index.html) ในเบราว์เซอร์ → คลิกการ์ดเพื่อเข้าแต่ละหน้า → ทุกหน้ามีปุ่ม **← ภาพรวม** (มุมซ้ายล่าง) กลับมาหน้าแรก
-- (ออปชัน) เสิร์ฟแบบโลคัล: `python3 -m http.server` แล้วเปิด `http://localhost:8000`
+> ดีไซน์ต้นฉบับ (static HTML 8 หน้า) อยู่ใน [`prototype/`](prototype/) — เปิดในแอปได้ที่ `/prototype/index.html`
 
-## หน้าทั้งหมด (8 หน้า ลิงก์ถึงกัน)
-| ไฟล์ | หน้า |
+## Stack
+| ชั้น | เทคโนโลยี |
 | --- | --- |
-| [index.html](index.html) | ภาพรวม — การ์ดลิงก์ไปทุกหน้า |
-| [landing.html](landing.html) | Landing Page — ฮีโร่ / ฟีเจอร์ / 3 ขั้นตอน / ราคา / รีวิว / footer |
-| [chat.html](chat.html) | แชทรวมทุกช่องทาง — Line/FB/IG/TikTok + การ์ดออเดอร์ + ข้อมูลลูกค้า |
-| [parcel.html](parcel.html) | ติดตามพัสดุ — EMS/Kerry/Flash/J&T + ไทม์ไลน์สถานะ |
-| [inventory.html](inventory.html) | จัดการสินค้า & POS — ตารางสต็อก + แผง POS |
-| [team.html](team.html) | จัดการทีม & สิทธิ์ — รายชื่อสมาชิก + บทบาท |
-| [checkout.html](checkout.html) | ชำระเงิน — สรุปคำสั่งซื้อ + บัตร/พร้อมเพย์/โอน |
-| [design-system.html](design-system.html) | Design System — สี ตัวอักษร ปุ่ม แบดจ์ คอมโพเนนต์ |
+| App (FE+BE) | **Next.js 15** (App Router · RSC · Server Actions) + TypeScript |
+| UI | Tailwind v4 + shadcn/ui + lucide-react · ฟอนต์ Plus Jakarta Sans / Inter / IBM Plex Sans Thai / JetBrains Mono (next/font) |
+| Database | **PostgreSQL (Neon)** + **Prisma** |
+| Auth + RBAC | **Clerk** (เจ้าของ/แอดมิน/พนักงาน) |
+| Realtime | **Pusher** Channels |
+| Queue/Jobs | **Upstash QStash** + Vercel Cron |
+| Cache/KV | Upstash Redis · **Storage:** Vercel Blob |
+| Channels (v1) | **LINE Messaging API** (webhook → QStash → consumer) |
+| Payments | PromptPay QR + EasySlip + บัตร (Omise/Stripe) |
+| Deploy | **Vercel** (+ Neon/Upstash/Blob) |
 
-## ชุดสี (Palette)
-สีหลัก **Pumpkin Spice `#FF6700`**
+ทุก integration ออกแบบเป็น **opt-in** — ถ้ายังไม่ใส่ env ตัวไหน แอปก็ยัง `dev`/`build` และเปิดหน้าจอได้ (ฟีเจอร์นั้นจะปิดไว้)
 
-| บทบาท | สี |
-| --- | --- |
-| Primary / แบรนด์ | `#FF6700` (Pumpkin Spice) · gradient `#FF8A3D → #FF6700` |
-| Accent — Cool Sky | `#48ACF0` |
-| Accent — Amethyst Smoke | `#A67DB8` |
-| Dark surface — Twilight Indigo | `#1D3461` (แถบเมนูเข้ม) |
-| Neutral — Dust Grey | `#D3D0CB` |
-| Success / Warning / Danger | `#10B981` / `#F59E0B` / `#EF4444` |
+## เริ่มใช้งาน
+```bash
+pnpm install
+cp .env.example .env.local     # ใส่ค่าตามบริการที่จะเปิด (ดูด้านล่าง)
+pnpm dev                       # http://localhost:3000
+```
 
-> สีแบรนด์ของแพลตฟอร์มจริง (Line เขียว, Messenger น้ำเงิน, IG, TikTok, Shopee ฯลฯ) และสีสถานะ
-> ยังคงไว้ตามเดิม — เปลี่ยนเฉพาะโทนแบรนด์ Qchat เป็นส้ม `#FF6700`
+### เปิดทีละบริการ (ใส่ค่าใน .env.local)
+- **DB:** `DATABASE_URL` / `DIRECT_URL` (Neon) → `pnpm db:push` แล้ว `pnpm db:studio`
+- **Auth:** `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` + `CLERK_SECRET_KEY` (ว่าง = ปิด auth, หน้า public ยังเปิดได้)
+- **Realtime:** `PUSHER_*` + `NEXT_PUBLIC_PUSHER_*`
+- **Queue/Cache:** `QSTASH_*`, `UPSTASH_REDIS_REST_*`
+- **Storage:** `BLOB_READ_WRITE_TOKEN`
+- **LINE:** `LINE_CHANNEL_ACCESS_TOKEN` + `LINE_CHANNEL_SECRET` → ตั้ง webhook ไปที่ `/api/webhooks/line`
 
-## ฟอนต์ & ไอคอน
-- **ฟอนต์:** Plus Jakarta Sans (หัวข้อ) · Inter + IBM Plex Sans Thai (เนื้อหา) · JetBrains Mono (ตัวเลข/โค้ด) — โหลดจาก Google Fonts
-- **ไอคอน:** Google **Material Symbols (Rounded)** ทุกหน้า (class `.msr`) แทนที่อีโมจิเดิม
-  - คงไว้: โลโก้แบรนด์ (Line/FB/IG/TikTok/Shopee, VISA/Mastercard/PromptPay), ธงชาติ 🇹🇭, จุดสถานะ, ดาวรีวิว ★ และอีโมจิที่เป็นเนื้อหา (รูปสินค้า/ข้อความแชต)
+## Scripts
+```
+pnpm dev | build | start         # Next.js
+pnpm typecheck                   # tsc --noEmit
+pnpm db:generate | db:push | db:migrate | db:studio | db:seed
+```
 
-## การนำทาง & สถานะ (interactive)
-- **ข้ามหน้าได้จริง:** แถบเมนูซ้ายของแอป (chat/parcel/inventory/team) + โลโก้ + ปุ่ม CTA ของ landing ลิงก์ไปหน้าจริง · ทุกหน้ามีปุ่ม **← ภาพรวม** กลับหน้าแรก
-- **สถานะภายในหน้า (กดได้จริง + ลิงก์ตรงผ่าน URL hash):**
-  - `team.html` — แท็บ `#roles` (บทบาท + เมทริกซ์สิทธิ์), `#invites` (คำเชิญ), `#activity` (บันทึกกิจกรรม), `#invite` (โมดัลเชิญสมาชิก)
-  - `checkout.html` — `#card` / `#promptpay` / `#bank` (วิธีชำระเงิน), `#success` (หน้าจ่ายสำเร็จ)
-  - `inventory.html` — `#add` (slide-over เพิ่มสินค้า)
-- ไฟล์ดีไซน์ต้นฉบับ (`.dc.html`) อยู่ใน [mockup/](mockup/)
-# qchat
+## โครงสร้าง
+```
+src/
+├─ app/
+│  ├─ page.tsx                 # Console (ภาพรวม → ลิงก์ทุกส่วน)
+│  ├─ chat|parcel|inventory|team|checkout|landing|design-system/  # หน้าจอ (กำลังพอร์ตจาก prototype)
+│  └─ api/
+│     ├─ webhooks/line/route.ts # รับ LINE (ตรวจ signature → enqueue/handle)
+│     └─ jobs/line-inbound/route.ts # consumer ของ QStash (ตรวจ signature)
+├─ components/  (ui/ = shadcn, providers, screen-stub)
+└─ lib/         (prisma, clerk[guarded], pusher, qstash, redis, line, blob, utils)
+prisma/schema.prisma            # Shop/User/Membership/Role · Channel/Customer/Conversation/Message · Product · Order/OrderItem/Shipment/Payment
+prototype/                      # static HTML 8 หน้า (ดีไซน์อ้างอิง)
+```
+
+## LINE inbound flow
+`LINE → POST /api/webhooks/line` (verify X-Line-Signature) → ถ้ามี QStash: enqueue ไป `/api/jobs/line-inbound` (verify Upstash signature) → `handleLineEvents()` → persist (Prisma) + push (Pusher). ถ้าไม่มี QStash ใน dev จะ process inline ทันที
+
+## สถานะปัจจุบัน (scaffold v0.1)
+✅ โครงรันได้ + build ผ่าน + typecheck สะอาด · ✅ Prisma schema ครบ domain · ✅ LINE webhook + QStash consumer · ✅ integration libs (guarded)
+🔜 ถัดไป: พอร์ต UI หน้าจอจาก prototype → React, ผูก Prisma เข้ากับ inbound, onboarding ร้าน/เชื่อม LINE, ระบบออเดอร์/สต็อก/ชำระเงิน
