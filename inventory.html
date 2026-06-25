@@ -71,7 +71,7 @@
           <div style="font-size:13.5px;color:#64748B;margin-top:2px">ดูแลสินค้า ราคา และระดับสต็อกทั้งหมดของร้าน</div>
         </div>
         <button style="cursor:pointer;font-family:inherit;font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:9px;background:#fff;color:#475569;border:1px solid #E2E8F0">⤓ นำเข้าจากไฟล์</button>
-        <button style="display:flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:9px;background:linear-gradient(135deg,#FF8A3D,#FF6700);color:#fff;border:none;box-shadow:0 4px 12px rgba(255,103,0,.3)">+ เพิ่มสินค้า</button>
+        <button id="addProductBtn" style="display:flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;font-weight:700;font-size:13.5px;padding:10px 18px;border-radius:9px;background:linear-gradient(135deg,#FF8A3D,#FF6700);color:#fff;border:none;box-shadow:0 4px 12px rgba(255,103,0,.3)">+ เพิ่มสินค้า</button>
       </div>
     </div>
 
@@ -298,5 +298,65 @@
 
 </div>
 <a href="index.html" style="position:fixed;left:20px;bottom:20px;z-index:1000;display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:999px;background:#fff;color:#FF6700;font-weight:700;font-size:14px;font-family:'Inter','IBM Plex Sans Thai',sans-serif;box-shadow:0 8px 24px rgba(15,23,42,.16);border:1px solid #FFD9BF">← ภาพรวม</a>
+
+<!-- ADD/EDIT SLIDE-OVER -->
+<div id="slideOver" style="position:fixed;inset:0;z-index:100;display:none;justify-content:flex-end">
+  <div id="slideBackdrop" style="position:absolute;inset:0;background:rgba(15,16,36,.4);backdrop-filter:blur(3px)"></div>
+  <div style="position:relative;width:440px;max-width:100%;height:100%;background:#fff;box-shadow:-12px 0 40px rgba(15,23,42,.18);display:flex;flex-direction:column;animation:slidein .3s ease both">
+    <div style="padding:20px 24px;border-bottom:1px solid #F1F5F9;display:flex;align-items:flex-start;justify-content:space-between">
+      <div><div style="font-family:'Plus Jakarta Sans','IBM Plex Sans Thai',sans-serif;font-size:18px;font-weight:800">เพิ่มสินค้าใหม่</div><div style="font-size:12.5px;color:#64748B;margin-top:2px">กรอกรายละเอียดสินค้าเพื่อเพิ่มลงคลัง</div></div>
+      <div id="slideClose" style="font-size:18px;color:#94A3B8;cursor:pointer;padding:2px 6px"><span class="msr">close</span></div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+      <div>
+        <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:7px">รูปสินค้า</label>
+        <div style="height:120px;border-radius:12px;border:1.5px dashed #CBD5E1;background:#FAFBFD;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer"><span style="font-size:26px"><span class="msr" style="font-size:26px;color:#94A3B8">image</span></span><span style="font-size:12px;color:#94A3B8">ลากรูปมาวาง หรือคลิกเพื่ออัปโหลด</span></div>
+      </div>
+      <div>
+        <label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ชื่อสินค้า</label>
+        <input value="เสื้อเชิ้ตโอเวอร์ไซส์ สีขาว" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">SKU</label><input value="SHIRT-WH-M" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+        <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">หมวดหมู่</label><div style="display:flex;align-items:center;justify-content:space-between;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;cursor:pointer"><span>เสื้อผ้า</span><span style="color:#94A3B8">▾</span></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ราคาขาย (฿)</label><input value="590" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+        <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">ต้นทุน (฿)</label><input value="280" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+      </div>
+      <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">จำนวนสต็อก</label><input value="42" style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:'JetBrains Mono',monospace"></div>
+      <div><label style="font-size:12.5px;font-weight:600;color:#334155;display:block;margin-bottom:6px">คำอธิบาย</label><textarea style="width:100%;font-size:14px;padding:11px 13px;border-radius:10px;border:1px solid #E2E8F0;color:#0F172A;font-family:inherit;resize:none;height:64px">เสื้อเชิ้ตทรงโอเวอร์ไซส์ ผ้าคอตตอน 100% นุ่มใส่สบาย</textarea></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#FFF8F2;border:1px solid #FFE2CC;border-radius:10px">
+        <div><div style="font-size:13.5px;font-weight:600">สถานะการขาย</div><div style="font-size:11.5px;color:#94A3B8">เปิดให้ลูกค้าสั่งซื้อได้ทันที</div></div>
+        <div style="width:42px;height:24px;border-radius:999px;background:#FF6700;position:relative;cursor:pointer"><div style="position:absolute;top:3px;left:21px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)"></div></div>
+      </div>
+    </div>
+    <div style="padding:16px 24px;border-top:1px solid #F1F5F9;display:flex;gap:10px">
+      <button id="slideCancel" style="flex:1;cursor:pointer;font-family:inherit;font-weight:600;font-size:14px;padding:12px;border-radius:10px;background:#F1F5F9;color:#475569;border:none">ยกเลิก</button>
+      <button style="flex:1.6;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:12px;border-radius:10px;background:linear-gradient(135deg,#FF8A3D,#FF6700);color:#fff;border:none;box-shadow:0 4px 12px rgba(255,103,0,.3)">บันทึกสินค้า</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var slideOver = document.getElementById('slideOver');
+    var addBtn = document.getElementById('addProductBtn');
+
+    function openSlide() {
+      slideOver.style.display = 'flex';
+    }
+    function closeSlide() {
+      slideOver.style.display = 'none';
+    }
+
+    if (addBtn) addBtn.addEventListener('click', openSlide);
+    document.getElementById('slideClose').addEventListener('click', closeSlide);
+    document.getElementById('slideCancel').addEventListener('click', closeSlide);
+    document.getElementById('slideBackdrop').addEventListener('click', closeSlide);
+
+    if (location.hash === '#add') openSlide();
+  })();
+</script>
 </body>
 </html>
