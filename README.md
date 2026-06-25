@@ -39,7 +39,11 @@
 - **ไอคอน:** Google **Material Symbols (Rounded)** ทุกหน้า (class `.msr`) แทนที่อีโมจิเดิม
   - คงไว้: โลโก้แบรนด์ (Line/FB/IG/TikTok/Shopee, VISA/Mastercard/PromptPay), ธงชาติ 🇹🇭, จุดสถานะ, ดาวรีวิว ★ และอีโมจิที่เป็นเนื้อหา (รูปสินค้า/ข้อความแชต)
 
-## หมายเหตุ
-- หน้า `chat` / `inventory` / `team` / `checkout` แสดง **สถานะเริ่มต้น** ตามดีไซน์ต้นฉบับ (เช่น checkout แสดงฟอร์มบัตร, team แสดงแท็บสมาชิก) — สลับสถานะอื่นเพิ่มได้ถ้าต้องการ
+## การนำทาง & สถานะ (interactive)
+- **ข้ามหน้าได้จริง:** แถบเมนูซ้ายของแอป (chat/parcel/inventory/team) + โลโก้ + ปุ่ม CTA ของ landing ลิงก์ไปหน้าจริง · ทุกหน้ามีปุ่ม **← ภาพรวม** กลับหน้าแรก
+- **สถานะภายในหน้า (กดได้จริง + ลิงก์ตรงผ่าน URL hash):**
+  - `team.html` — แท็บ `#roles` (บทบาท + เมทริกซ์สิทธิ์), `#invites` (คำเชิญ), `#activity` (บันทึกกิจกรรม), `#invite` (โมดัลเชิญสมาชิก)
+  - `checkout.html` — `#card` / `#promptpay` / `#bank` (วิธีชำระเงิน), `#success` (หน้าจ่ายสำเร็จ)
+  - `inventory.html` — `#add` (slide-over เพิ่มสินค้า)
 - ไฟล์ดีไซน์ต้นฉบับ (`.dc.html`) อยู่ใน [mockup/](mockup/)
 # qchat
