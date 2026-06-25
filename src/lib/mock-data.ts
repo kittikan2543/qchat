@@ -34,7 +34,7 @@ export type Conversation = {
   time: string;
   unread: number;
   online: boolean;
-  customer: { phone: string; address: string; note?: string };
+  customer: { phone: string; address?: string; note?: string };
   orders: OrderSummary[];
   messages: ChatMessage[];
 };
