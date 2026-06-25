@@ -24,6 +24,18 @@ export const products: Product[] = [
   { id: 'p6', sku: 'SHOE-SN-40', name: 'รองเท้าผ้าใบ ไซส์ 40', category: 'รองเท้า', price: 1490, cost: 720, stock: 31, active: true, emoji: '👟', tint: '#ECFDF5' },
 ];
 
+// Display thumbnail (emoji + tint) derived from a product's category.
+const CATEGORY_STYLE: Record<string, { emoji: string; tint: string }> = {
+  เสื้อผ้า: { emoji: '👕', tint: '#EFF6FF' },
+  กระเป๋า: { emoji: '👜', tint: '#FDF2F8' },
+  เครื่องสำอาง: { emoji: '🧴', tint: '#ECFEFF' },
+  รองเท้า: { emoji: '👟', tint: '#ECFDF5' },
+  accessories: { emoji: '🧢', tint: '#F1F5F9' },
+};
+export function categoryStyle(category: string) {
+  return CATEGORY_STYLE[category] ?? { emoji: '📦', tint: '#F1F5F9' };
+}
+
 export type StockState = 'in' | 'low' | 'out';
 
 export function stockState(stock: number): StockState {

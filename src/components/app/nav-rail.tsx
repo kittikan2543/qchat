@@ -11,7 +11,10 @@ import {
   Settings,
   type LucideIcon,
 } from 'lucide-react';
+import { UserButton } from '@clerk/nextjs';
 import { cn } from '@/lib/utils';
+
+const clerkEnabled = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 type Item = { href: string; label: string; Icon: LucideIcon };
 
@@ -58,13 +61,17 @@ export function NavRail() {
         <Link href="/team" className="text-white/55 transition-colors hover:text-white/90">
           <Settings className="size-[18px]" />
         </Link>
-        <Link
-          href="/team"
-          className="flex size-9 items-center justify-center rounded-full border-2 border-white/20 text-sm font-bold text-white"
-          style={{ background: 'linear-gradient(135deg,#7FC4F5,#48ACF0)' }}
-        >
-          ป
-        </Link>
+        {clerkEnabled ? (
+          <UserButton />
+        ) : (
+          <Link
+            href="/team"
+            className="flex size-9 items-center justify-center rounded-full border-2 border-white/20 text-sm font-bold text-white"
+            style={{ background: 'linear-gradient(135deg,#7FC4F5,#48ACF0)' }}
+          >
+            ป
+          </Link>
+        )}
       </div>
     </nav>
   );

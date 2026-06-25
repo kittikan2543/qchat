@@ -29,8 +29,8 @@ pnpm dev                       # http://localhost:3000
 ```
 
 ### เปิดทีละบริการ (ใส่ค่าใน .env.local)
-- **DB:** `DATABASE_URL` / `DIRECT_URL` (Neon) → `pnpm db:push` แล้ว `pnpm db:studio`
-- **Auth:** `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` + `CLERK_SECRET_KEY` (ว่าง = ปิด auth, หน้า public ยังเปิดได้)
+- **DB:** ตั้ง `DATABASE_URL`/`DIRECT_URL` ใน `.env` (Neon **หรือ** local Postgres เช่น `postgresql://USER@localhost:5432/qchat`) → `pnpm db:push` → `pnpm db:seed` (สร้างร้าน demo + สินค้า/แชต) → `pnpm db:studio`. **Inventory ใช้ DB จริงแล้ว** (อ่าน/เพิ่ม/toggle/บันทึกการขาย ผ่าน Server Actions)
+- **Auth (Clerk):** ใส่ `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` + `CLERK_SECRET_KEY` → เปิดล็อกอิน (`/sign-in`, `/sign-up`), ป้องกัน route แอป, และ sync ผู้ใช้→ร้าน/สมาชิกใน DB อัตโนมัติ · เว้นว่าง = โหมด demo (ใช้ร้าน `demo`, ทุกหน้าเปิดได้)
 - **Realtime:** `PUSHER_*` + `NEXT_PUBLIC_PUSHER_*`
 - **Queue/Cache:** `QSTASH_*`, `UPSTASH_REDIS_REST_*`
 - **Storage:** `BLOB_READ_WRITE_TOKEN`
